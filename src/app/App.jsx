@@ -3,10 +3,12 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
 // layouts
-import { Header } from './layouts';
+import { Header, Home } from './@layout';
 
-// pages
-import { Auth, Home, Deals, Users } from './pages';
+// modules
+import { Auth } from './auth/auth.controller';
+import { Users } from './users/users.controller';
+import { Deals } from './deals/deals.controller';
 
 const hashHistory = createBrowserHistory();
 
