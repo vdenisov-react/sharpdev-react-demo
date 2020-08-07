@@ -5,3 +5,9 @@ body {
     margin: 0;
     padding: 0;
 }
+
+.app-root {
+    display: block;
+    width: 1200px;
+    margin: 0 auto;
+}
