@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, NavLink, Route, Link, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
 // layouts
@@ -21,12 +21,15 @@ function App() {
                         <Route exact path="/">
                             <Home />
                         </Route>
+
                         <Route path="/auth">
                             <Auth />
                         </Route>
+
                         <Route path="/deals">
                             <Deals />
                         </Route>
+
                         <Route path="/users">
                             <Users />
                         </Route>

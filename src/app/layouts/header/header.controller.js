@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import HeaderView from './header.view';
 
 const MENU = [
@@ -12,5 +12,7 @@ export function Header() {
     const title = 'PW React App';
     const menu = MENU;
 
-    return <HeaderView ctrl={{ title, menu }} />;
+    const [currentLink, setCurrentLink] = useState(window.location.pathname);
+
+    return <HeaderView ctrl={{ title, menu, currentLink, setCurrentLink }} />;
 }
