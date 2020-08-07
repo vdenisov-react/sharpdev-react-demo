@@ -1,5 +1,8 @@
 import React from 'react';
+import AuthView from './auth.view';
 
 export function Auth() {
-    return <p>Auth</p>;
+    const pageTitle = 'Auth page';
+
+    return <AuthView ctrl={{ pageTitle }} />;
 }

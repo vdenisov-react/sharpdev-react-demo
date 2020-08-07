@@ -9,10 +9,10 @@ const MENU = [
 ];
 
 export function Header() {
-    const title = 'PW React App';
-    const menu = MENU;
+    const appTitle = 'PW React App';
+    const navMenu = MENU;
 
     const [currentLink, setCurrentLink] = useState(window.location.pathname);
 
-    return <HeaderView ctrl={{ title, menu, currentLink, setCurrentLink }} />;
+    return <HeaderView ctrl={{ appTitle, navMenu, currentLink, setCurrentLink }} />;
 }

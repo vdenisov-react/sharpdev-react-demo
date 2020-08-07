@@ -1,5 +1,8 @@
 import React from 'react';
+import UsersView from './users.view';
 
 export function Users() {
-    return <p>Users</p>;
+    const pageTitle = 'Users page';
+
+    return <UsersView ctrl={{ pageTitle }} />;
 }

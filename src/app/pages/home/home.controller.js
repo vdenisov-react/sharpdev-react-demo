@@ -1,5 +1,8 @@
 import React from 'react';
+import HomeView from './home.view';
 
 export function Home() {
-    return <p>Home</p>;
+    const pageTitle = 'Home page';
+
+    return <HomeView ctrl={{ pageTitle }} />;
 }

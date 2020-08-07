@@ -1,5 +1,8 @@
 import React from 'react';
+import DealsView from './deals.view';
 
 export function Deals() {
-    return <p>Deals</p>;
+    const pageTitle = 'Deals page';
+
+    return <DealsView ctrl={{ pageTitle }} />;
 }
