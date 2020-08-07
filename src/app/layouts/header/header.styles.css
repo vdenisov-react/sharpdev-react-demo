@@ -1,0 +1,11 @@
+.app-header {
+    display: block;
+}
+
+.active {
+    font-weight: bold;
+}
+
+.pidor {
+    font-weight: bold;
+}
