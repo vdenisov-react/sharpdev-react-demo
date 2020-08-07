@@ -10,6 +10,9 @@
         "prettier-fix": "prettier --write **/*.{html,css,js,jsx}"
     },
     "dependencies": {
+        "bootstrap": "^4.5.2",
+        "jquery": "^3.5.1",
+        "popper.js": "^1.16.1",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
         "react-scripts": "3.4.1"
