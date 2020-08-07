@@ -1,9 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
 // layouts
-import { Header, Home } from './@layout';
+import { Header, Home, NotFound } from './@layout';
 
 // modules
 import { Auth } from './auth/auth.controller';
@@ -34,6 +34,16 @@ function App() {
 
                         <Route path="/users">
                             <Users />
+                        </Route>
+
+                        {/* #################### */}
+
+                        <Route path="/not-found">
+                            <NotFound />
+                        </Route>
+
+                        <Route path="*">
+                            <Redirect to="/not-found" />
                         </Route>
                     </Switch>
                 </div>
