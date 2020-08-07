@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import HeaderView from './header.view';
+import { useLocation } from 'react-router-dom';
 
 const MENU = [
     { key: 1, link: '/', label: 'Home' },
@@ -13,7 +14,8 @@ export function Header() {
     const navMenu = MENU;
     const basePath = '/';
 
-    const [currentLink, setCurrentLink] = useState(window.location.pathname);
+    const location = useLocation();
+    const [currentLink, setCurrentLink] = useState(location.pathname);
 
     return <HeaderView ctrl={{ appTitle, navMenu, basePath, currentLink, setCurrentLink }} />;
 }
