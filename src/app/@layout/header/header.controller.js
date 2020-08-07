@@ -11,8 +11,9 @@ const MENU = [
 export function Header() {
     const appTitle = 'PW React App';
     const navMenu = MENU;
+    const basePath = '/';
 
     const [currentLink, setCurrentLink] = useState(window.location.pathname);
 
-    return <HeaderView ctrl={{ appTitle, navMenu, currentLink, setCurrentLink }} />;
+    return <HeaderView ctrl={{ appTitle, navMenu, basePath, currentLink, setCurrentLink }} />;
 }
