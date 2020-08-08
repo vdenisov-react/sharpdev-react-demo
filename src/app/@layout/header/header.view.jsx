@@ -6,7 +6,7 @@ export default ({ ctrl }) => (
     // ##################################################
 
     <div className="app-header">
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
             <Link className="navbar-brand" to={ctrl.basePath} onClick={() => ctrl.setCurrentLink(ctrl.basePath)}>
                 {ctrl.appTitle}
             </Link>
