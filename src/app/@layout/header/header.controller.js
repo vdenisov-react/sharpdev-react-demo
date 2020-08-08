@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import HeaderView from './header.view';
 
 const MENU = [
@@ -11,8 +12,10 @@ const MENU = [
 export function Header() {
     const appTitle = 'PW React App';
     const navMenu = MENU;
+    const basePath = '/';
 
-    const [currentLink, setCurrentLink] = useState(window.location.pathname);
+    const location = useLocation();
+    const [currentLink, setCurrentLink] = useState(location.pathname);
 
-    return <HeaderView ctrl={{ appTitle, navMenu, currentLink, setCurrentLink }} />;
+    return <HeaderView ctrl={{ appTitle, navMenu, basePath, currentLink, setCurrentLink }} />;
 }

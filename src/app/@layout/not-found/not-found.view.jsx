@@ -1,12 +1,12 @@
 import React from 'react';
-import './deals.styles.css';
+import './not-found.styles.scss';
 
 export default ({ ctrl }) => (
     // ##################################################
 
-    <span className="page-title" style={{ color: 'green' }}>
-        {ctrl.pageTitle}
-    </span>
+    <div className='block'>
+        <h1>{ctrl.pageTitle}</h1>
+    </div>
 
     // ##################################################
 );

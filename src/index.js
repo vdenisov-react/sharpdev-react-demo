@@ -7,9 +7,9 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 // ---
 
 // App Styles
-import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootswatch/dist/cosmo/bootstrap.min.css';
-import './index.css';
+import './styles/styles.scss';
 // ---
 
 // Service worker

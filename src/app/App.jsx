@@ -1,37 +1,49 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 
 // layouts
-import { Header } from './layouts';
+import { Header, Home, NotFound } from './@layout';
 
-// pages
-import { Auth, Home, Deals, Users } from './pages';
+// modules
+import { Auth } from './auth/auth.controller';
+import { Users } from './users/users.controller';
+import { Deals } from './deals/deals.controller';
 
 const hashHistory = createBrowserHistory();
 
 function App() {
     return (
-        <div className="app-root">
+        <div className='app-root'>
             <Router history={hashHistory}>
                 <Header />
 
-                <div className="content">
+                <div className='content'>
                     <Switch>
-                        <Route exact path="/">
+                        <Route exact path='/'>
                             <Home />
                         </Route>
 
-                        <Route path="/auth">
+                        <Route path='/auth'>
                             <Auth />
                         </Route>
 
-                        <Route path="/deals">
+                        <Route path='/deals'>
                             <Deals />
                         </Route>
 
-                        <Route path="/users">
+                        <Route path='/users'>
                             <Users />
+                        </Route>
+
+                        {/* #################### */}
+
+                        <Route path='/not-found'>
+                            <NotFound />
+                        </Route>
+
+                        <Route path='*'>
+                            <Redirect to='/not-found' />
                         </Route>
                     </Switch>
                 </div>
