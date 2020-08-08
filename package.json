@@ -6,8 +6,8 @@
         "===> BUILD <===": "----------",
         "build": "react-scripts build",
         "===> CHECKS <===": "----------",
-        "prettier": "prettier --check **/*.{html,css,js,jsx}",
-        "prettier-fix": "prettier --write **/*.{html,css,js,jsx}"
+        "prettier": "prettier --check **/*.{js,jsx,scss,html}",
+        "prettier-fix": "prettier --write **/*.{js,jsx,scss,html}"
     },
     "dependencies": {
         "bootstrap": "^4.5.2",
