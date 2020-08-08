@@ -1,5 +1,5 @@
 import React from 'react';
-import './auth.styles.css';
+import './auth.styles.scss';
 
 export default ({ ctrl }) => (
     // ##################################################

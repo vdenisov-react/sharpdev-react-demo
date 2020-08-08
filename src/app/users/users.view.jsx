@@ -1,5 +1,5 @@
 import React from 'react';
-import './users.styles.css';
+import './users.styles.scss';
 
 export default ({ ctrl }) => (
     // ##################################################

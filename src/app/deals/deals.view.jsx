@@ -1,5 +1,5 @@
 import React from 'react';
-import './deals.styles.css';
+import './deals.styles.scss';
 
 export default ({ ctrl }) => (
     // ##################################################

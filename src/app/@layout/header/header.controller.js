@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import HeaderView from './header.view';
 import { useLocation } from 'react-router-dom';
+import HeaderView from './header.view';
 
 const MENU = [
     { key: 1, link: '/', label: 'Home' },

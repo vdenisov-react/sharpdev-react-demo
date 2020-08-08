@@ -1,5 +1,5 @@
 import React from 'react';
-import './not-found.styles.css';
+import './not-found.styles.scss';
 
 export default ({ ctrl }) => (
     // ##################################################
