@@ -15,10 +15,10 @@ import { Deals } from './deals/deals.controller';
 function App() {
     return (
         <app-root>
-            <Router history={history}>
-                <Header />
+            <Header />
 
-                <div className="content">
+            <div className="content">
+                <Router history={history}>
                     <Switch>
                         <Route exact path="/" component={Home} />
 
@@ -29,8 +29,8 @@ function App() {
                         <Route path="/not-found" component={NotFound} />
                         <Redirect exact="*" to="/not-found" />
                     </Switch>
-                </div>
-            </Router>
+                </Router>
+            </div>
         </app-root>
     );
 }

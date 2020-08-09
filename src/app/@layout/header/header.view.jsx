@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './header.styles.scss';
 
 export default ({ ctrl }) => (
@@ -7,17 +6,17 @@ export default ({ ctrl }) => (
 
     <app-header>
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-            <Link className="navbar-brand" to={ctrl.basePath} onClick={() => ctrl.setCurrentLink(ctrl.basePath)}>
+            <span className="navbar-brand" to={ctrl.basePath} onClick={() => ctrl.onNavigateTo(ctrl.basePath)}>
                 {ctrl.appTitle}
-            </Link>
+            </span>
 
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
                     {ctrl.navMenu.map(item => (
                         <li key={item.key} className={'nav-item' + (item.link === ctrl.currentLink ? ' active' : '')}>
-                            <Link className="nav-link" to={item.link} onClick={() => ctrl.setCurrentLink(item.link)}>
+                            <span className="nav-link" onClick={() => ctrl.onNavigateTo(item.link)}>
                                 {item.label}
-                            </Link>
+                            </span>
                         </li>
                     ))}
                 </ul>
