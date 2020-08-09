@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import HeaderView from './header.view';
 import { history } from '../../@core';
 
@@ -14,12 +14,12 @@ export function Header() {
     const navMenu = MENU;
     const basePath = '/';
 
-    console.log('header init !!!');
+    const [currentLink, setCurrentLink] = useState('/');
 
     function onNavigateTo(link) {
-        console.log(`navigate to => "${link}"`);
         history.push(link);
+        setCurrentLink(link);
     }
 
-    return <HeaderView ctrl={{ appTitle, navMenu, basePath, onNavigateTo }} />;
+    return <HeaderView ctrl={{ appTitle, navMenu, basePath, currentLink, onNavigateTo }} />;
 }
