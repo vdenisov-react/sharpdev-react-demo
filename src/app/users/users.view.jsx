@@ -4,9 +4,9 @@ import './users.styles.scss';
 export default ({ ctrl }) => (
     // ##################################################
 
-    <span className='page-title' style={{ color: 'blue' }}>
-        {ctrl.pageTitle}
-    </span>
+    <div className='app-users'>
+        <span className='page-title'>{ctrl.pageTitle}</span>
+    </div>
 
     // ##################################################
 );
