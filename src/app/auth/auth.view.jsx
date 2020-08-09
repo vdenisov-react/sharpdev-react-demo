@@ -4,9 +4,9 @@ import './auth.styles.scss';
 export default ({ ctrl }) => (
     // ##################################################
 
-    <span className='page-title' style={{ color: 'red' }}>
-        {ctrl.pageTitle}
-    </span>
+    <app-auth>
+        <span className="page-title">{ctrl.pageTitle}</span>
+    </app-auth>
 
     // ##################################################
 );

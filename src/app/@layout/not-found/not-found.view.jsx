@@ -4,9 +4,11 @@ import './not-found.styles.scss';
 export default ({ ctrl }) => (
     // ##################################################
 
-    <div className='block'>
-        <h1>{ctrl.pageTitle}</h1>
-    </div>
+    <app-not-found>
+        <div className="container">
+            <h1>{ctrl.pageTitle}</h1>
+        </div>
+    </app-not-found>
 
     // ##################################################
 );

@@ -4,7 +4,9 @@ import './home.styles.scss';
 export default ({ ctrl }) => (
     // ##################################################
 
-    <span className='page-title'>{ctrl.pageTitle}</span>
+    <app-home>
+        <span className="page-title">{ctrl.pageTitle}</span>
+    </app-home>
 
     // ##################################################
 );
