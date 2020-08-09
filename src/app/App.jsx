@@ -20,31 +20,14 @@ function App() {
 
                 <div className="content">
                     <Switch>
-                        <Route exact path="/">
-                            <Home />
-                        </Route>
+                        <Route exact path="/" component={Home} />
 
-                        <Route path="/auth">
-                            <Auth />
-                        </Route>
+                        <Route path="/auth" component={Auth} />
+                        <Route path="/deals" component={Deals} />
+                        <Route path="/users" component={Users} />
 
-                        <Route path="/deals">
-                            <Deals />
-                        </Route>
-
-                        <Route path="/users">
-                            <Users />
-                        </Route>
-
-                        {/* #################### */}
-
-                        <Route path="/not-found">
-                            <NotFound />
-                        </Route>
-
-                        <Route path="*">
-                            <Redirect to="/not-found" />
-                        </Route>
+                        <Route path="/not-found" component={NotFound} />
+                        <Redirect exact="*" to="/not-found" />
                     </Switch>
                 </div>
             </Router>
