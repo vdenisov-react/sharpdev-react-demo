@@ -5,7 +5,7 @@ export default ({ ctrl }) => (
     // ##################################################
 
     <app-auth>
-        <span className='page-title'>{ctrl.pageTitle}</span>
+        <span className="page-title">{ctrl.pageTitle}</span>
     </app-auth>
 
     // ##################################################

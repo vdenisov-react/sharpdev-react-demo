@@ -18,32 +18,32 @@ function App() {
             <Router history={hashHistory}>
                 <Header />
 
-                <div className='content'>
+                <div className="content">
                     <Switch>
-                        <Route exact path='/'>
+                        <Route exact path="/">
                             <Home />
                         </Route>
 
-                        <Route path='/auth'>
+                        <Route path="/auth">
                             <Auth />
                         </Route>
 
-                        <Route path='/deals'>
+                        <Route path="/deals">
                             <Deals />
                         </Route>
 
-                        <Route path='/users'>
+                        <Route path="/users">
                             <Users />
                         </Route>
 
                         {/* #################### */}
 
-                        <Route path='/not-found'>
+                        <Route path="/not-found">
                             <NotFound />
                         </Route>
 
-                        <Route path='*'>
-                            <Redirect to='/not-found' />
+                        <Route path="*">
+                            <Redirect to="/not-found" />
                         </Route>
                     </Switch>
                 </div>

@@ -5,7 +5,7 @@ export default ({ ctrl }) => (
     // ##################################################
 
     <app-users>
-        <span className='page-title'>{ctrl.pageTitle}</span>
+        <span className="page-title">{ctrl.pageTitle}</span>
     </app-users>
 
     // ##################################################
