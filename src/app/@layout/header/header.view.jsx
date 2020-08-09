@@ -5,7 +5,7 @@ import './header.styles.scss';
 export default ({ ctrl }) => (
     // ##################################################
 
-    <div className='app-header'>
+    <app-header>
         <nav className='navbar navbar-expand-lg navbar-dark bg-primary'>
             <Link className='navbar-brand' to={ctrl.basePath} onClick={() => ctrl.setCurrentLink(ctrl.basePath)}>
                 {ctrl.appTitle}
@@ -23,7 +23,7 @@ export default ({ ctrl }) => (
                 </ul>
             </div>
         </nav>
-    </div>
+    </app-header>
 
     // ##################################################
 );

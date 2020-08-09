@@ -4,9 +4,9 @@ import './deals.styles.scss';
 export default ({ ctrl }) => (
     // ##################################################
 
-    <div className='app-deals'>
+    <app-deals>
         <span className='page-title'>{ctrl.pageTitle}</span>
-    </div>
+    </app-deals>
 
     // ##################################################
 );

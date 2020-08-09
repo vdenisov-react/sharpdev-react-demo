@@ -1,6 +1,8 @@
 @import '../../styles/variables';
 
-.app-users {
+app-users {
+    display: block;
+
     .page-title {
         color: blue !important;
     }

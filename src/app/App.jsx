@@ -14,7 +14,7 @@ const hashHistory = createBrowserHistory();
 
 function App() {
     return (
-        <div className='app-root'>
+        <app-root>
             <Router history={hashHistory}>
                 <Header />
 
@@ -48,7 +48,7 @@ function App() {
                     </Switch>
                 </div>
             </Router>
-        </div>
+        </app-root>
     );
 }
 

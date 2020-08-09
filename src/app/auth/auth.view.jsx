@@ -4,9 +4,9 @@ import './auth.styles.scss';
 export default ({ ctrl }) => (
     // ##################################################
 
-    <div className='app-auth'>
+    <app-auth>
         <span className='page-title'>{ctrl.pageTitle}</span>
-    </div>
+    </app-auth>
 
     // ##################################################
 );
