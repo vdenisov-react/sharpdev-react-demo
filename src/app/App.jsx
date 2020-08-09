@@ -1,6 +1,8 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+import { Router, Route, Switch, Redirect } from 'react-router-dom';
+
+// core
+import { history } from './@core';
 
 // layouts
 import { Header, Home, NotFound } from './@layout';
@@ -10,12 +12,10 @@ import { Auth } from './auth/auth.controller';
 import { Users } from './users/users.controller';
 import { Deals } from './deals/deals.controller';
 
-const hashHistory = createBrowserHistory();
-
 function App() {
     return (
         <app-root>
-            <Router history={hashHistory}>
+            <Router history={history}>
                 <Header />
 
                 <div className="content">
