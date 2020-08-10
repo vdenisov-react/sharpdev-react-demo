@@ -6,7 +6,7 @@ import { Header } from './@layout';
 // routing
 import RouterOutlet from './app.routing';
 
-function App() {
+export default function AppModule() {
     return (
         <app-root>
             <Header />
@@ -17,5 +17,3 @@ function App() {
         </app-root>
     );
 }
-
-export default App;
