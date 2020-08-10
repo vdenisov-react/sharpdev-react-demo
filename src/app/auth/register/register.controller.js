@@ -1,6 +1,6 @@
 import React from 'react';
 import RegisterView from './register.view';
-import { history } from '../../@core';
+import { history } from '../../@core/navigation';
 
 export function Register({ modulePath }) {
     function goToLogin() {

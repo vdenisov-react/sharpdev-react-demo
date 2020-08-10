@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import HeaderView from './header.view';
-import { history } from '../../@core';
+import { history } from '../../@core/navigation';
 
 const MENU = [
     { key: 1, link: '/', label: 'Home' },

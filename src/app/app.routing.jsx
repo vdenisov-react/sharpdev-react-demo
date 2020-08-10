@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 
 // core
-import { history } from './@core';
+import { history } from './@core/navigation';
 
 // layouts
 import { Home, NotFound } from './@layout';

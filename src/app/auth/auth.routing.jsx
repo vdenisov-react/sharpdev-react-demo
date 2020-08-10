@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 
-import { history } from '../@core';
+import { history } from '../@core/navigation';
 
 // pages
 import { Login } from './login/login.controller';
