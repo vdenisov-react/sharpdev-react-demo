@@ -20,11 +20,14 @@ export default ({ ctrl }) => (
                         <input
                             type="text"
                             name="email"
-                            ref={ctrl.formGroup.email}
+                            ref={ctrl.formControls.email}
                             id="input-email"
-                            className="form-control"
+                            className={'form-control' + (ctrl.formErrors.email ? ' is-invalid' : '')}
                             placeholder="enter email ..."
                         />
+
+                        {/* errors */}
+                        {ctrl.formErrors.email && <span className="field-error">{ctrl.formErrors.email.message}</span>}
                     </div>
 
                     {/* PASSWORD */}
@@ -36,11 +39,16 @@ export default ({ ctrl }) => (
                         <input
                             type="text"
                             name="password"
-                            ref={ctrl.formGroup.password}
+                            ref={ctrl.formControls.password}
                             id="input-password"
-                            className="form-control"
+                            className={'form-control' + (ctrl.formErrors.password ? ' is-invalid' : '')}
                             placeholder="enter password ..."
                         />
+
+                        {/* errors */}
+                        {ctrl.formErrors.password && (
+                            <span className="field-error">{ctrl.formErrors.password.message}</span>
+                        )}
                     </div>
 
                     {/* link to "register" */}
@@ -52,8 +60,6 @@ export default ({ ctrl }) => (
 
                     {/* LOGIN */}
                     <div className="mt-3 d-flex justify-content-center">
-                        {/* <input type="submit" /> */}
-
                         <button type="submit" className="btn btn-success login-button">
                             login
                         </button>

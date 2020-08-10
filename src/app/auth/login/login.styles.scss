@@ -14,4 +14,11 @@ app-login {
         border-radius: 5px;
         letter-spacing: 1px;
     }
+
+    .field-error {
+        width: 100%;
+        margin-top: 0.25rem;
+        font-size: 80%;
+        color: #dc3545;
+    }
 }
