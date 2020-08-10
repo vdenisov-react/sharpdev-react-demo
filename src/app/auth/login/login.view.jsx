@@ -9,14 +9,22 @@ export default ({ ctrl }) => (
             <div className="card-header">Login form</div>
 
             <div className="card-body">
-                <form>
+                {/* <form onSubmit={ctrl.authForm.handleSubmit(ctrl.onProcessLogin)}> */}
+                <form onSubmit={ctrl.handleSubmit(ctrl.onProcessLogin)}>
                     {/* EMAIL */}
                     <div className="form-group">
                         <label htmlFor="input-email" className="form-control-label font-weight-bold">
                             Email
                         </label>
 
-                        <input type="text" placeholder="enter email ..." id="input-email" className="form-control" />
+                        <input
+                            type="text"
+                            name="email"
+                            ref={ctrl.formGroup.email}
+                            id="input-email"
+                            className="form-control"
+                            placeholder="enter email ..."
+                        />
                     </div>
 
                     {/* PASSWORD */}
@@ -25,19 +33,30 @@ export default ({ ctrl }) => (
                             Password
                         </label>
 
-                        <input placeholder="enter password ..." id="input-password" className="form-control" />
+                        <input
+                            type="text"
+                            name="password"
+                            ref={ctrl.formGroup.password}
+                            id="input-password"
+                            className="form-control"
+                            placeholder="enter password ..."
+                        />
                     </div>
 
                     {/* link to "register" */}
                     <div className="d-flex justify-content-center">
-                        <button className="btn btn-link" onClick={ctrl.goToRegister}>
+                        <button type="button" className="btn btn-link" onClick={ctrl.goToRegister}>
                             go to register page
                         </button>
                     </div>
 
                     {/* LOGIN */}
                     <div className="mt-3 d-flex justify-content-center">
-                        <button className="btn btn-success login-button">login</button>
+                        {/* <input type="submit" /> */}
+
+                        <button type="submit" className="btn btn-success login-button">
+                            login
+                        </button>
                     </div>
                 </form>
             </div>
