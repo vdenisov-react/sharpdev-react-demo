@@ -1,5 +1,17 @@
 app-login {
-    .page-title {
-        color: orange !important;
+    .login-form {
+        max-width: 30rem;
+    }
+
+    .card-header {
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .login-button {
+        width: 10rem;
+        font-size: 20px;
+        border-radius: 5px;
+        letter-spacing: 1px;
     }
 }
