@@ -25,7 +25,7 @@ export default ({ ctrl }) => (
             <div className="collapse navbar-collapse" id="navbarColor01">
                 <ul className="navbar-nav mr-auto">
                     {ctrl.navMenu.map(item => (
-                        <li key={item.key} className={'nav-item' + (item.link === ctrl.currentLink ? ' active' : '')}>
+                        <li key={item.key} className={'nav-item' + (ctrl.isLinkActive(item.link) ? ' active' : '')}>
                             <span className="nav-link" onClick={() => ctrl.onNavigateTo(item.link)}>
                                 {item.label}
                             </span>

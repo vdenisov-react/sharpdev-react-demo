@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import HeaderView from './header.view';
 import { history } from '../../@core';
 
@@ -14,12 +14,26 @@ export function Header() {
     const navMenu = MENU;
     const basePath = '/';
 
-    const [currentLink, setCurrentLink] = useState('/');
+    const initLocation = history.location;
+    const [currentPath, setCurrentPath] = useState(initLocation.pathname);
 
-    function onNavigateTo(link) {
-        history.push(link);
-        setCurrentLink(link);
+    useEffect(() => {
+        history.listen(newLocation => {
+            setCurrentPath(newLocation.pathname);
+        });
+    }, []);
+
+    function onNavigateTo(navLink) {
+        history.push(navLink);
     }
 
-    return <HeaderView ctrl={{ appTitle, navMenu, basePath, currentLink, onNavigateTo }} />;
+    function isLinkActive(navLink) {
+        if (navLink === '/') {
+            return currentPath === navLink;
+        } else {
+            return currentPath.includes(navLink);
+        }
+    }
+
+    return <HeaderView ctrl={{ appTitle, navMenu, basePath, onNavigateTo, isLinkActive }} />;
 }
