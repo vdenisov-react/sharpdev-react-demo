@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
 
 import LoginView from './login.view';
 import { history } from '../../@core/navigation';
-
-const API_URL = 'http://193.124.114.46:3001';
+import { AuthService } from '../../../api/services';
 
 const EMAIL_PATTERN = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/;
 
@@ -43,10 +41,13 @@ export function Login({ modulePath }) {
 
     const [loginError, setLoginError] = useState('');
 
+    const authService = new AuthService();
+
     function onProcessLogin(data) {
         setLoginError('');
-        axios
-            .post(`${API_URL}/sessions/create`, data)
+        const { email, password } = data;
+        authService
+            .login(email, password)
             .then(res => console.log('RES =>', res.data))
             .catch(err => setLoginError(err.message || 'Unexpected login error'));
     }
