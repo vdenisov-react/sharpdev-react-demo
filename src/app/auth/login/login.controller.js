@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { get } from 'lodash';
 
 import LoginView from './login.view';
 import { history } from '../../@core/navigation';
+
+// services
+import { LocalStorageService } from '../../@core/services';
 import { AuthService } from '../../../api/services';
 
 const EMAIL_PATTERN = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/;
@@ -27,6 +31,11 @@ const DEFAULT_VALUES = {
 };
 
 export function Login({ modulePath }) {
+    // services
+    const authService = new AuthService();
+    const localStorageService = new LocalStorageService();
+    // ---
+
     const { register: formControl, handleSubmit, errors: formErrors } = useForm({
         defaultValues: {
             email: DEFAULT_VALUES.EMAIL,
@@ -41,15 +50,23 @@ export function Login({ modulePath }) {
 
     const [loginError, setLoginError] = useState('');
 
-    const authService = new AuthService();
-
     function onProcessLogin(data) {
-        setLoginError('');
         const { email, password } = data;
         authService
             .login(email, password)
-            .then(res => console.log('RES =>', res.data))
+            .then(res => {
+                const token = get(res, 'data.id_token') || null;
+                if (token) {
+                    localStorageService.set('token', token);
+                    setLoginError('');
+                    goToHome();
+                }
+            })
             .catch(err => setLoginError(err.message || 'Unexpected login error'));
+    }
+
+    function goToHome() {
+        history.push('/');
     }
 
     function goToRegister() {
