@@ -16,8 +16,8 @@ import './styles/styles.scss';
 import * as serviceWorker from './utils/serviceWorker';
 // ---
 
-import App from './app/app.module';
+import AppModule from './app/app.module';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<AppModule />, document.getElementById('root'));
 
 serviceWorker.unregister();
