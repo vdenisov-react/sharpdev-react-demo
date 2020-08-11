@@ -1,6 +1,7 @@
 export class LocalStorageService {
     get(itemName) {
         const item = localStorage.getItem(itemName);
+        // eslint-disable-next-line
         const jsonPattern = new RegExp(/[\[\{].*[\}\]]/);
         const numPattern = new RegExp(/^\d+$/);
 
