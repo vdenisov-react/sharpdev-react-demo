@@ -18,7 +18,7 @@ export default ({ ctrl }) => (
                         </label>
 
                         <input
-                            type="text"
+                            type="email"
                             name="email"
                             ref={ctrl.formControls.email}
                             id="input-email"
@@ -37,7 +37,7 @@ export default ({ ctrl }) => (
                         </label>
 
                         <input
-                            type="text"
+                            type="password"
                             name="password"
                             ref={ctrl.formControls.password}
                             id="input-password"
@@ -64,6 +64,14 @@ export default ({ ctrl }) => (
                             login
                         </button>
                     </div>
+
+                    {/* errors */}
+                    {ctrl.loginError && (
+                        <div className="mt-3 text-danger">
+                            <span className="font-weight-bold">[{'ERROR'}]</span>
+                            &nbsp;<span>{ctrl.loginError}</span>
+                        </div>
+                    )}
                 </form>
             </div>
         </div>
