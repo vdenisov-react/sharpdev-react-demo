@@ -4,12 +4,11 @@ import { get } from 'lodash';
 
 import LoginView from './login.view';
 import { history } from '../../@core/navigation';
+import { EMAIL_PATTERN } from '../../@shared/constants';
 
 // services
 import { LocalStorageService } from '../../@core/services';
 import { AuthService } from '../../../api/services';
-
-const EMAIL_PATTERN = /[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/;
 
 const FORM_VALIDATION = {
     EMAIL: {
@@ -25,11 +24,6 @@ const FORM_VALIDATION = {
     },
 };
 
-const DEFAULT_VALUES = {
-    EMAIL: '',
-    PASSWORD: '',
-};
-
 export function Login({ modulePath }) {
     // services
     const authService = new AuthService();
@@ -37,10 +31,7 @@ export function Login({ modulePath }) {
     // ---
 
     const { register: formControl, handleSubmit, errors: formErrors } = useForm({
-        defaultValues: {
-            email: DEFAULT_VALUES.EMAIL,
-            password: DEFAULT_VALUES.PASSWORD,
-        },
+        defaultValues: { email: '', password: '' },
     });
 
     const formControls = {
