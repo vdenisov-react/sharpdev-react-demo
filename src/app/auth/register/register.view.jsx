@@ -94,7 +94,7 @@ export default ({ ctrl }) => (
 
                     {/* link to "login" */}
                     <div className="d-flex justify-content-center">
-                        <button className="btn btn-link" onClick={ctrl.goToLogin}>
+                        <button type="button" className="btn btn-link" onClick={ctrl.goToLogin}>
                             go to login page
                         </button>
                     </div>
