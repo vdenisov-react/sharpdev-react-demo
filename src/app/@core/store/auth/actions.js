@@ -1,2 +1,9 @@
-export const AUTH_LOG_IN = '[Auth] Log In';
-export const AUTH_LOG_OUT = '[Auth] Log Out';
+import * as AUTH from './types';
+
+export const aAuthLogIn = () => ({
+    type: AUTH.LOG_IN,
+});
+
+export const aAuthLogOut = () => ({
+    type: AUTH.LOG_OUT,
+});
