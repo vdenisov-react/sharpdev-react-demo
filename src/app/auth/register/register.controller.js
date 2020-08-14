@@ -56,19 +56,18 @@ export function Register({ modulePath }) {
     const [registerError, setRegisterError] = useState('');
 
     function onProcessRegister(data) {
-        console.log('REGISTER =>', data);
-        // const { email, password } = data;
-        // authService
-        //     .login(email, password)
-        //     .then(res => {
-        //         const token = get(res, 'data.id_token') || null;
-        //         if (token) {
-        //             localStorageService.set('token', token);
-        //             setRegisterError('');
-        //             goToHome();
-        //         }
-        //     })
-        //     .catch(err => setRegisterError(err.message || 'Unexpected login error'));
+        const { email, username, password } = data;
+        authService
+            .register(email, username, password)
+            .then(res => {
+                const token = get(res, 'data.id_token') || null;
+                if (token) {
+                    localStorageService.set('token', token);
+                    setRegisterError('');
+                    goToHome();
+                }
+            })
+            .catch(err => setRegisterError(err.message || 'Unexpected login error'));
     }
 
     function goToHome() {
