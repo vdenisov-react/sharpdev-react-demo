@@ -8,18 +8,23 @@ import RouterOutlet from './app.routing';
 
 // store
 import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 import { appReducer } from './@core/store/app.reducer';
 
-const store = createStore(appReducer);
+const appStore = createStore(appReducer);
 
 export default function AppModule() {
     return (
-        <app-root>
-            <Header />
+        <Provider store={appStore}>
+            {/* --- */}
+            <app-root>
+                <Header />
 
-            <div className="content">
-                <RouterOutlet />
-            </div>
-        </app-root>
+                <div className="content">
+                    <RouterOutlet />
+                </div>
+            </app-root>
+            {/* --- */}
+        </Provider>
     );
 }
