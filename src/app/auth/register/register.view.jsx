@@ -29,6 +29,27 @@ export default ({ ctrl }) => (
                         {ctrl.formErrors.email && <span className="field-error">{ctrl.formErrors.email.message}</span>}
                     </div>
 
+                    {/* USERNAME */}
+                    <div className="form-group">
+                        <label htmlFor="input-username" className="form-control-label font-weight-bold">
+                            Username
+                        </label>
+
+                        <input
+                            type="text"
+                            name="username"
+                            ref={ctrl.formControls.username}
+                            id="input-username"
+                            className={'form-control' + (ctrl.formErrors.username ? ' is-invalid' : '')}
+                            placeholder="enter username ..."
+                        />
+
+                        {/* errors */}
+                        {ctrl.formErrors.username && (
+                            <span className="field-error">{ctrl.formErrors.username.message}</span>
+                        )}
+                    </div>
+
                     {/* PASSWORD */}
                     <div className="form-group">
                         <label htmlFor="input-password" className="form-control-label font-weight-bold">
