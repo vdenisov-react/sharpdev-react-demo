@@ -9,7 +9,6 @@ export default ({ ctrl }) => (
             <div className="card-header">Login form</div>
 
             <div className="card-body">
-                {/* <form onSubmit={ctrl.authForm.handleSubmit(ctrl.onProcessLogin)}> */}
                 <form onSubmit={ctrl.handleSubmit(ctrl.onProcessLogin)}>
                     {/* EMAIL */}
                     <div className="form-group">
