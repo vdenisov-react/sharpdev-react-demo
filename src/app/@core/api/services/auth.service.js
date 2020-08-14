@@ -8,4 +8,10 @@ export class AuthService {
         const data = { email, password };
         return this.http.post(path, data);
     }
+
+    register(email, password) {
+        const path = 'sessions/create';
+        const data = { email, password };
+        return this.http.post(path, data);
+    }
 }

@@ -8,7 +8,7 @@ import { EMAIL_PATTERN } from '../../@shared/constants';
 
 // services
 import { LocalStorageService } from '../../@core/services';
-import { AuthService } from '../../../api/services';
+import { AuthService } from '../../@core/api/services';
 
 const FORM_VALIDATION = {
     EMAIL: {
@@ -49,8 +49,18 @@ export function Register({ modulePath }) {
     const [registerError, setRegisterError] = useState('');
 
     function onProcessRegister(data) {
-        const { email, password, confirm } = data;
-        console.log(`REGISTER => "${email}" / "${password}" / "${confirm}"`);
+        const { email, password } = data;
+        authService
+            .login(email, password)
+            .then(res => {
+                const token = get(res, 'data.id_token') || null;
+                if (token) {
+                    localStorageService.set('token', token);
+                    setRegisterError('');
+                    goToHome();
+                }
+            })
+            .catch(err => setRegisterError(err.message || 'Unexpected login error'));
     }
 
     function goToHome() {

@@ -8,7 +8,7 @@ import { EMAIL_PATTERN } from '../../@shared/constants';
 
 // services
 import { LocalStorageService } from '../../@core/services';
-import { AuthService } from '../../../api/services';
+import { AuthService } from '../../@core/api/services';
 
 const FORM_VALIDATION = {
     EMAIL: {
