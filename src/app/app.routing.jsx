@@ -12,14 +12,14 @@ import AuthModule from './auth/auth.module';
 import { Users } from './users/users.controller';
 import { Deals } from './deals/deals.controller';
 
-export default ({ isAuth, onLogIn }) => (
+export default ({ isAuth }) => (
     <Router history={history}>
         <Switch>
             {/* RANDOM GUEST */}
             {!isAuth && (
                 <Fragment>
                     <Redirect exact="/" to="/auth" />
-                    <Route path="/auth" render={routerProps => <AuthModule {...routerProps} onLogIn={onLogIn} />} />
+                    <Route path="/auth" render={routerProps => <AuthModule {...routerProps} />} />
                 </Fragment>
             )}
 
