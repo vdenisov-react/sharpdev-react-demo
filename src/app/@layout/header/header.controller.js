@@ -3,15 +3,15 @@ import HeaderView from './header.view';
 import { history } from '../../@core/navigation';
 
 const MENU = [
+    // { key: 0, link: '/auth', label: 'Auth' },
     { key: 1, link: '/', label: 'Home' },
-    { key: 2, link: '/auth', label: 'Auth' },
+    { key: 2, link: '/users', label: 'Users' },
     { key: 3, link: '/deals', label: 'Deals' },
-    { key: 4, link: '/users', label: 'Users' },
 ];
 
-export function Header() {
+export function Header({ isAuth, onLogOut }) {
     const appTitle = 'PW React App';
-    const navMenu = MENU;
+    const navMenu = isAuth ? MENU : [];
     const basePath = '/';
 
     const initLocation = history.location;
@@ -27,6 +27,10 @@ export function Header() {
         history.push(navLink);
     }
 
+    function goToAuthPage() {
+        history.push('/auth');
+    }
+
     function isLinkActive(navLink) {
         if (navLink === '/') {
             return currentPath === navLink;
@@ -35,5 +39,19 @@ export function Header() {
         }
     }
 
-    return <HeaderView ctrl={{ appTitle, navMenu, basePath, onNavigateTo, isLinkActive }} />;
+    return (
+        <HeaderView
+            ctrl={{
+                isAuth,
+                appTitle,
+                navMenu,
+                basePath,
+                // ---
+                onLogOut,
+                onNavigateTo,
+                goToAuthPage,
+                isLinkActive,
+            }}
+        />
+    );
 }

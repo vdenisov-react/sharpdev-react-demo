@@ -7,17 +7,17 @@ import { history } from '../@core/navigation';
 import { Login } from './login/login.controller';
 import { Register } from './register/register.controller';
 
-export default ({ modulePath }) => {
+export default ({ modulePath, onLogIn }) => {
     return (
         <div>
             <Router history={history}>
                 <Switch>
                     <Route path={`${modulePath}/login`}>
-                        <Login modulePath={modulePath} />
+                        <Login modulePath={modulePath} onLogIn={onLogIn} />
                     </Route>
 
                     <Route path={`${modulePath}/register`}>
-                        <Register modulePath={modulePath} />
+                        <Register modulePath={modulePath} onLogIn={onLogIn} />
                     </Route>
 
                     <Redirect exact="*" to={`${modulePath}/login`} />

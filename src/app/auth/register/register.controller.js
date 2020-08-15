@@ -33,7 +33,7 @@ const FORM_VALIDATION = {
     },
 };
 
-export function Register({ modulePath }) {
+export function Register({ modulePath, onLogIn }) {
     // services
     const authService = new AuthService();
     const localStorageService = new LocalStorageService();
@@ -64,14 +64,10 @@ export function Register({ modulePath }) {
                 if (token) {
                     localStorageService.set('token', token);
                     setRegisterError('');
-                    goToHome();
+                    onLogIn();
                 }
             })
             .catch(err => setRegisterError(err.message || 'Unexpected login error'));
-    }
-
-    function goToHome() {
-        history.push('/');
     }
 
     function goToLogin() {
