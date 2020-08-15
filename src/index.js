@@ -16,8 +16,22 @@ import './styles/styles.scss';
 import * as serviceWorker from './utils/serviceWorker';
 // ---
 
+// store
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { appReducer } from './app/@core/store/app.reducer';
+// ---
+
 import AppModule from './app/app.module';
 
-ReactDOM.render(<AppModule />, document.getElementById('root'));
+const extensionDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
+const appStore = createStore(appReducer, extensionDevTools);
+
+ReactDOM.render(
+    <Provider store={appStore}>
+        <AppModule />
+    </Provider>,
+    document.getElementById('root'),
+);
 
 serviceWorker.unregister();

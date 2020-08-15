@@ -1,18 +1,38 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-// store
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
-import { appReducer } from './@core/store/app.reducer';
-import AppComponent from './app.component';
+// layouts
+import { Header } from './@layout';
 
-const extensionDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
-const appStore = createStore(appReducer, extensionDevTools);
+// routing
+import RouterOutlet from './app.routing';
+import { history } from './@core/navigation';
+import { aAuthLogOut } from './@core/store/auth';
 
-export default function AppModule() {
+function AppModule({ isAuth, onLogOut }) {
     return (
-        <Provider store={appStore}>
-            <AppComponent />
-        </Provider>
+        <app-root>
+            <Header isAuth={isAuth} onLogOut={onLogOut} />
+
+            <div className="content">
+                <RouterOutlet isAuth={isAuth} />
+            </div>
+        </app-root>
     );
 }
+
+// ##################################################
+
+const mapStateToProps = (state, ownProps) => ({
+    ownProps,
+    isAuth: state.auth.isAuth,
+});
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    onLogOut: () => {
+        history.push('/auth');
+        return dispatch(aAuthLogOut());
+    },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppModule);
