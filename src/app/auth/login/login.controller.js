@@ -25,11 +25,6 @@ const FORM_VALIDATION = {
 };
 
 export function Login({ modulePath, onLogIn }) {
-    // services
-    const authService = new AuthService();
-    const localStorageService = new LocalStorageService();
-    // ---
-
     const { register: formControl, handleSubmit, errors: formErrors } = useForm({
         defaultValues: { email: '', password: '' },
     });
@@ -43,12 +38,11 @@ export function Login({ modulePath, onLogIn }) {
 
     function onProcessLogin(data) {
         const { email, password } = data;
-        authService
-            .login(email, password)
+        AuthService.login(email, password)
             .then(res => {
                 const token = get(res, 'data.id_token') || null;
                 if (token) {
-                    localStorageService.set('token', token);
+                    LocalStorageService.set('token', token);
                     setLoginError('');
                     onLogIn();
                 }

@@ -34,11 +34,6 @@ const FORM_VALIDATION = {
 };
 
 export function Register({ modulePath, onLogIn }) {
-    // services
-    const authService = new AuthService();
-    const localStorageService = new LocalStorageService();
-    // ---
-
     const { register: formControl, handleSubmit, errors: formErrors, watch } = useForm({
         defaultValues: { email: '', username: '', password: '', confirmation: '' },
     });
@@ -57,12 +52,11 @@ export function Register({ modulePath, onLogIn }) {
 
     function onProcessRegister(data) {
         const { email, username, password } = data;
-        authService
-            .register(email, username, password)
+        AuthService.register(email, username, password)
             .then(res => {
                 const token = get(res, 'data.id_token') || null;
                 if (token) {
-                    localStorageService.set('token', token);
+                    LocalStorageService.set('token', token);
                     setRegisterError('');
                     onLogIn();
                 }
