@@ -19,6 +19,7 @@ export default ({ ctrl }) => (
                         <input
                             type="email"
                             name="email"
+                            autoComplete="email"
                             ref={ctrl.formControls.email}
                             id="input-email"
                             className={'form-control' + (ctrl.formErrors.email ? ' is-invalid' : '')}
@@ -38,6 +39,7 @@ export default ({ ctrl }) => (
                         <input
                             type="password"
                             name="password"
+                            autoComplete="current-password"
                             ref={ctrl.formControls.password}
                             id="input-password"
                             className={'form-control' + (ctrl.formErrors.password ? ' is-invalid' : '')}
