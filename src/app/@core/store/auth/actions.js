@@ -11,6 +11,17 @@ export const actionAuthLoginError = errMsg => ({
 });
 // <= LOGIN
 
+// => REGISTER
+export const actionAuthRegisterSuccess = () => ({
+    type: AUTH.REGISTER_SUCCESS,
+    payload: {},
+});
+export const actionAuthRegisterError = errMsg => ({
+    type: AUTH.REGISTER_ERROR,
+    payload: { registerError: errMsg },
+});
+// <= REGISTER
+
 export const actionAuthLogout = () => ({
     type: AUTH.LOGOUT,
 });

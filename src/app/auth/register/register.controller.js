@@ -1,14 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
-import { get } from 'lodash';
 
 import RegisterView from './register.view';
 import { history } from '../../@core/navigation';
 import { EMAIL_PATTERN, USERNAME_PATTERN } from '../../@shared/constants';
-
-// services
-import { LocalStorageService } from '../../@core/services';
-import { AuthService } from '../../@core/api/services';
 
 const FORM_VALIDATION = {
     EMAIL: {
@@ -33,9 +28,9 @@ const FORM_VALIDATION = {
     },
 };
 
-export function Register({ modulePath, onLogin }) {
+export function Register({ modulePath, onRegister, registerError }) {
     const { register: formControl, handleSubmit, errors: formErrors, watch } = useForm({
-        defaultValues: { email: '', username: '', password: '', confirmation: '' },
+        defaultValues: { email: '', username: '', password: '', confirm: '' },
     });
 
     const formControls = {
@@ -48,20 +43,9 @@ export function Register({ modulePath, onLogin }) {
         }),
     };
 
-    const [registerError, setRegisterError] = useState('');
-
     function onProcessRegister(data) {
         const { email, username, password } = data;
-        AuthService.register(email, username, password)
-            .then(res => {
-                const token = get(res, 'data.id_token') || null;
-                if (token) {
-                    LocalStorageService.set('token', token);
-                    setRegisterError('');
-                    onLogin();
-                }
-            })
-            .catch(err => setRegisterError(err.message || 'Unexpected login error'));
+        onRegister(email, username, password);
     }
 
     function goToLogin() {
