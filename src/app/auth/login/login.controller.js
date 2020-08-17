@@ -1,14 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
-import { get } from 'lodash';
 
 import LoginView from './login.view';
 import { history } from '../../@core/navigation';
 import { EMAIL_PATTERN } from '../../@shared/constants';
-
-// services
-import { LocalStorageService } from '../../@core/services';
-import { AuthService } from '../../@core/api/services';
 
 const FORM_VALIDATION = {
     EMAIL: {
@@ -24,7 +19,7 @@ const FORM_VALIDATION = {
     },
 };
 
-export function Login({ modulePath, onLogIn }) {
+export function Login({ modulePath, loginError, onLogin }) {
     const { register: formControl, handleSubmit, errors: formErrors } = useForm({
         defaultValues: { email: '', password: '' },
     });
@@ -34,20 +29,9 @@ export function Login({ modulePath, onLogIn }) {
         password: formControl({ ...FORM_VALIDATION.PASSWORD }),
     };
 
-    const [loginError, setLoginError] = useState('');
-
     function onProcessLogin(data) {
         const { email, password } = data;
-        AuthService.login(email, password)
-            .then(res => {
-                const token = get(res, 'data.id_token') || null;
-                if (token) {
-                    LocalStorageService.set('token', token);
-                    setLoginError('');
-                    onLogIn();
-                }
-            })
-            .catch(err => setLoginError(err.message || 'Unexpected login error'));
+        onLogin(email, password);
     }
 
     function goToRegister() {

@@ -33,7 +33,7 @@ const FORM_VALIDATION = {
     },
 };
 
-export function Register({ modulePath, onLogIn }) {
+export function Register({ modulePath, onLogin }) {
     const { register: formControl, handleSubmit, errors: formErrors, watch } = useForm({
         defaultValues: { email: '', username: '', password: '', confirmation: '' },
     });
@@ -58,7 +58,7 @@ export function Register({ modulePath, onLogIn }) {
                 if (token) {
                     LocalStorageService.set('token', token);
                     setRegisterError('');
-                    onLogIn();
+                    onLogin();
                 }
             })
             .catch(err => setRegisterError(err.message || 'Unexpected login error'));

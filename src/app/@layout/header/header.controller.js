@@ -9,7 +9,7 @@ const MENU = [
     { key: 3, link: '/deals', label: 'Deals' },
 ];
 
-export function Header({ isAuth, onLogOut }) {
+export function Header({ isAuth, onLogout }) {
     const appTitle = 'PW React App';
     const navMenu = isAuth ? MENU : [];
     const basePath = '/';
@@ -47,7 +47,7 @@ export function Header({ isAuth, onLogOut }) {
                 navMenu,
                 basePath,
                 // ---
-                onLogOut,
+                onLogout,
                 onNavigateTo,
                 goToAuthPage,
                 isLinkActive,

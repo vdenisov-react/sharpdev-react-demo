@@ -7,12 +7,12 @@ import { Header } from './@layout';
 // routing
 import RouterOutlet from './app.routing';
 import { history } from './@core/navigation';
-import { aAuthLogOut } from './@core/store/auth';
+import { actionAuthLogout } from './@core/store/auth';
 
-function AppModule({ isAuth, onLogOut }) {
+function AppModule({ isAuth, onLogout }) {
     return (
         <app-root>
-            <Header isAuth={isAuth} onLogOut={onLogOut} />
+            <Header isAuth={isAuth} onLogout={onLogout} />
 
             <div className="content">
                 <RouterOutlet isAuth={isAuth} />
@@ -29,9 +29,9 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    onLogOut: () => {
+    onLogout: () => {
         history.push('/auth');
-        return dispatch(aAuthLogOut());
+        return dispatch(actionAuthLogout());
     },
 });
 

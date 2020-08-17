@@ -38,7 +38,7 @@ export default ({ ctrl }) => (
 
                     {ctrl.isAuth && (
                         <div className="btn-group account__actions ml-4" role="group">
-                            <button type="button" className="btn btn-danger" onClick={ctrl.onLogOut}>
+                            <button type="button" className="btn btn-danger" onClick={ctrl.onLogout}>
                                 Log Out
                             </button>
                         </div>
