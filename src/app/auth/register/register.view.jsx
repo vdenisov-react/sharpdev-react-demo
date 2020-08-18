@@ -19,6 +19,7 @@ export default ({ ctrl }) => (
                         <input
                             type="email"
                             name="email"
+                            autoComplete="email"
                             ref={ctrl.formControls.email}
                             id="input-email"
                             className={'form-control' + (ctrl.formErrors.email ? ' is-invalid' : '')}
@@ -38,6 +39,7 @@ export default ({ ctrl }) => (
                         <input
                             type="text"
                             name="username"
+                            autoComplete="username"
                             ref={ctrl.formControls.username}
                             id="input-username"
                             className={'form-control' + (ctrl.formErrors.username ? ' is-invalid' : '')}
@@ -59,6 +61,7 @@ export default ({ ctrl }) => (
                         <input
                             type="password"
                             name="password"
+                            autoComplete="new-password"
                             ref={ctrl.formControls.password}
                             id="input-password"
                             className={'form-control' + (ctrl.formErrors.password ? ' is-invalid' : '')}
@@ -80,6 +83,7 @@ export default ({ ctrl }) => (
                         <input
                             type="password"
                             name="confirm"
+                            autoComplete="new-password"
                             ref={ctrl.formControls.confirm}
                             id="input-confirm"
                             className={'form-control' + (ctrl.formErrors.confirm ? ' is-invalid' : '')}
@@ -94,7 +98,7 @@ export default ({ ctrl }) => (
 
                     {/* link to "login" */}
                     <div className="d-flex justify-content-center">
-                        <button className="btn btn-link" onClick={ctrl.goToLogin}>
+                        <button type="button" className="btn btn-link" onClick={ctrl.goToLogin}>
                             go to login page
                         </button>
                     </div>
@@ -107,10 +111,10 @@ export default ({ ctrl }) => (
                     </div>
 
                     {/* errors */}
-                    {ctrl.registerError && (
+                    {ctrl.errorRegister && (
                         <div className="mt-3 text-danger">
                             <span className="font-weight-bold">[{'ERROR'}]</span>
-                            &nbsp;<span>{ctrl.registerError}</span>
+                            &nbsp;<span>{ctrl.errorRegister}</span>
                         </div>
                     )}
                 </form>

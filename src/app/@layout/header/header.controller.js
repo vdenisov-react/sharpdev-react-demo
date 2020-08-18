@@ -1,19 +1,28 @@
 import React, { useState, useEffect } from 'react';
-import HeaderView from './header.view';
+import { get } from 'lodash';
+
+// navigation
 import { history } from '../../@core/navigation';
+
+// template
+import HeaderView from './header.view';
 
 const MENU = [
     { key: 1, link: '/', label: 'Home' },
-    { key: 2, link: '/auth', label: 'Auth' },
+    { key: 2, link: '/users', label: 'Users' },
     { key: 3, link: '/deals', label: 'Deals' },
-    { key: 4, link: '/users', label: 'Users' },
 ];
 
-export function Header() {
+export function Header({ isAuth, currentUser, onLogout }) {
+    // app title
     const appTitle = 'PW React App';
-    const navMenu = MENU;
     const basePath = '/';
 
+    // header menu
+    const navMenu = isAuth ? MENU : [];
+    const userIdentity = isAuth ? get(currentUser, 'email') || 'Authorized' : 'Guest';
+
+    // path/location
     const initLocation = history.location;
     const [currentPath, setCurrentPath] = useState(initLocation.pathname);
 
@@ -27,6 +36,10 @@ export function Header() {
         history.push(navLink);
     }
 
+    function goToAuthPage() {
+        history.push('/auth');
+    }
+
     function isLinkActive(navLink) {
         if (navLink === '/') {
             return currentPath === navLink;
@@ -35,5 +48,20 @@ export function Header() {
         }
     }
 
-    return <HeaderView ctrl={{ appTitle, navMenu, basePath, onNavigateTo, isLinkActive }} />;
+    return (
+        <HeaderView
+            ctrl={{
+                isAuth,
+                appTitle,
+                navMenu,
+                basePath,
+                userIdentity,
+                // ---
+                onLogout,
+                onNavigateTo,
+                goToAuthPage,
+                isLinkActive,
+            }}
+        />
+    );
 }

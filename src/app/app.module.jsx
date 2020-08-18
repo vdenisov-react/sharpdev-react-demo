@@ -1,31 +1,53 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 
 // layouts
 import { Header } from './@layout';
 
 // routing
 import RouterOutlet from './app.routing';
+import { history } from './@core/navigation';
 
 // store
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
-import { appReducer } from './@core/store/app.reducer';
+import { actionAuthLogout, thunkGetCurrentUser } from './@core/store/auth';
 
-const extensionDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__();
-const appStore = createStore(appReducer, extensionDevTools);
+// services
+import { LocalStorageService } from './@core/services';
 
-export default function AppModule() {
+function AppModule({ isAuth, currentUser, onGetCurrentUser, onLogout }) {
+    useEffect(() => {
+        const accessToken = LocalStorageService.get('token');
+        if (accessToken) onGetCurrentUser();
+    }, [onGetCurrentUser]);
+
     return (
-        <Provider store={appStore}>
-            {/* --- */}
-            <app-root>
-                <Header />
+        <app-root>
+            <Header isAuth={isAuth} currentUser={currentUser} onLogout={onLogout} />
 
-                <div className="content">
-                    <RouterOutlet />
-                </div>
-            </app-root>
-            {/* --- */}
-        </Provider>
+            <div className="content">
+                <RouterOutlet isAuth={isAuth} />
+            </div>
+        </app-root>
     );
 }
+
+// ##################################################
+
+const mapStateToProps = (state, ownProps) => ({
+    ownProps,
+    isAuth: state.auth.isAuth,
+    currentUser: state.auth.currentUser,
+});
+
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    onGetCurrentUser: () => {
+        return dispatch(thunkGetCurrentUser());
+    },
+    onLogout: () => {
+        LocalStorageService.del('token');
+        history.push('/auth');
+        return dispatch(actionAuthLogout());
+    },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppModule);

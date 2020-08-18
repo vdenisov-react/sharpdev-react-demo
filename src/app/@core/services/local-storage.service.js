@@ -1,5 +1,5 @@
-export class LocalStorageService {
-    get(itemName) {
+export const LocalStorageService = {
+    get: itemName => {
         const item = localStorage.getItem(itemName);
         // eslint-disable-next-line
         const jsonPattern = new RegExp(/[\[\{].*[\}\]]/);
@@ -12,15 +12,15 @@ export class LocalStorageService {
         }
 
         return null;
-    }
+    },
 
-    set(itemName, item) {
+    set: (itemName, item) => {
         typeof item === 'object'
             ? localStorage.setItem(itemName, JSON.stringify(item))
             : localStorage.setItem(itemName, item);
-    }
+    },
 
-    del(itemName) {
+    del: itemName => {
         localStorage.removeItem(itemName);
-    }
-}
+    },
+};

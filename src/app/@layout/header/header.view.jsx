@@ -32,6 +32,18 @@ export default ({ ctrl }) => (
                         </li>
                     ))}
                 </ul>
+
+                <div className="account">
+                    <span className="account__user-name">{ctrl.isAuth ? ctrl.userIdentity : 'Guest'}</span>
+
+                    {ctrl.isAuth && (
+                        <div className="btn-group account__actions ml-4" role="group">
+                            <button type="button" className="btn btn-danger" onClick={ctrl.onLogout}>
+                                Log Out
+                            </button>
+                        </div>
+                    )}
+                </div>
             </div>
         </nav>
     </app-header>

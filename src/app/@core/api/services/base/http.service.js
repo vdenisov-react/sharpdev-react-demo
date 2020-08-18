@@ -1,17 +1,29 @@
 import axios from 'axios';
+import { LocalStorageService } from '../../../services';
 
 const API_URL = 'http://193.124.114.46:3001';
 
-export class HttpService {
-    apiUrl = API_URL;
+function _generateHeaders() {
+    const headers = {};
 
-    get(path) {
-        const request = `${this.apiUrl}/${path}`;
-        return axios.get(request);
+    // "Authorization"
+    const accessToken = LocalStorageService.get('token');
+    if (accessToken) {
+        headers['Authorization'] = `Bearer ${accessToken}`;
     }
+    // ---
 
-    post(path, data) {
-        const request = `${this.apiUrl}/${path}`;
-        return axios.post(request, data);
-    }
+    return headers;
 }
+
+export const HttpService = {
+    get: path => {
+        const request = `${API_URL}/${path}`;
+        return axios.get(request, { headers: _generateHeaders() });
+    },
+
+    post: (path, data) => {
+        const request = `${API_URL}/${path}`;
+        return axios.post(request, data, { headers: _generateHeaders() });
+    },
+};
