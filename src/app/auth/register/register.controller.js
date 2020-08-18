@@ -3,20 +3,20 @@ import { useForm } from 'react-hook-form';
 
 import RegisterView from './register.view';
 import { history } from '../../@core/navigation';
-import { EMAIL_PATTERN, USERNAME_PATTERN } from '../../@shared/constants';
+import { PATTERN_EMAIL, PATTERN_USERNAME } from '../../@shared/constants';
 
 const FORM_VALIDATION = {
     EMAIL: {
         required: { value: true, message: 'Email is required!' },
         minLength: { value: 5, message: 'Email is too small!' },
         maxLength: { value: 50, message: 'Email is too large!' },
-        pattern: { value: EMAIL_PATTERN, message: 'Wrong format!' },
+        pattern: { value: PATTERN_EMAIL, message: 'Wrong format!' },
     },
     USERNAME: {
         required: { value: true, message: 'Username is required!' },
         minLength: { value: 3, message: 'Username is too small!' },
         maxLength: { value: 20, message: 'Username is too large!' },
-        pattern: { value: USERNAME_PATTERN, message: 'Wrong format!' },
+        pattern: { value: PATTERN_USERNAME, message: 'Wrong format!' },
     },
     PASSWORD: {
         required: { value: true, message: 'Password is required!' },

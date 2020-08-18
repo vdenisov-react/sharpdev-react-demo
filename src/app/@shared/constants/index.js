@@ -1,2 +1,2 @@
-export { EMAIL_PATTERN } from './pattern-email';
-export { USERNAME_PATTERN } from './pattern-username';
+export { PATTERN_EMAIL, PATTERN_USERNAME } from './patterns';
+export { ERROR_UNEXPECTED } from './errors';

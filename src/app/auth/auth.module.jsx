@@ -23,6 +23,9 @@ import {
 import { AuthService } from '../@core/api/services';
 import { LocalStorageService } from '../@core/services';
 
+// ...
+import { ERROR_UNEXPECTED } from '../@shared/constants';
+
 function AuthModule({
     ownProps: { match },
     // ---
@@ -59,7 +62,7 @@ const thunkLogin = (email, password) => {
                 dispatch(thunkGetCurrentUser());
             })
             .catch(err => {
-                const errMsg = err.message || 'Unexpected login error';
+                const errMsg = err.message || ERROR_UNEXPECTED;
                 dispatch(actionAuthLoginError(errMsg));
             });
     };
@@ -75,7 +78,7 @@ const thunkRegister = (email, username, password) => {
                 dispatch(thunkGetCurrentUser());
             })
             .catch(err => {
-                const errMsg = err.message || 'Unexpected login error';
+                const errMsg = err.message || ERROR_UNEXPECTED;
                 dispatch(actionAuthRegisterError(errMsg));
             });
     };
@@ -90,7 +93,7 @@ const thunkGetCurrentUser = () => {
                 history.push('/');
             })
             .catch(err => {
-                const errMsg = err.message || 'Unexpected login error';
+                const errMsg = err.message || ERROR_UNEXPECTED;
                 dispatch(actionAuthGetCurrentUserError(errMsg));
             });
     };
