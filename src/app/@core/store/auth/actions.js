@@ -33,6 +33,10 @@ export const actionAuthGetCurrentUserError = errMsg => ({
 });
 // <= CURRENT_USER
 
+export const actionsUpdateAuthStatus = isAuth => ({
+    type: AUTH.UPDATE_STATUS,
+    payload: { isAuth },
+});
 export const actionAuthLogout = () => ({
     type: AUTH.LOGOUT,
 });

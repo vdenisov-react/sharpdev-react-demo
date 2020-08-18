@@ -1,7 +1,4 @@
-// react/redux
 import React, { useState, useEffect } from 'react';
-
-// third-party
 import { get } from 'lodash';
 
 // navigation

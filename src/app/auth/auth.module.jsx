@@ -1,8 +1,5 @@
-// react/redux
 import React from 'react';
 import { connect } from 'react-redux';
-
-// third-party
 import { get } from 'lodash';
 
 // routing

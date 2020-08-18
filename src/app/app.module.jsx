@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import { get } from 'lodash';
 
 // layouts
 import { Header } from './@layout';
@@ -7,9 +8,23 @@ import { Header } from './@layout';
 // routing
 import RouterOutlet from './app.routing';
 import { history } from './@core/navigation';
-import { actionAuthLogout } from './@core/store/auth';
 
-function AppModule({ isAuth, currentUser, onLogout }) {
+// store
+import { actionAuthLogout, actionAuthGetCurrentUserSuccess, actionAuthGetCurrentUserError } from './@core/store/auth';
+
+// services
+import { LocalStorageService } from './@core/services';
+import { AuthService } from './@core/api/services';
+
+// ...
+import { ERROR_UNEXPECTED } from './@shared/constants';
+
+function AppModule({ isAuth, currentUser, onGetCurrentUser, onLogout }) {
+    useEffect(() => {
+        const accessToken = LocalStorageService.get('token');
+        !!accessToken ? onGetCurrentUser() : onLogout();
+    }, []);
+
     return (
         <app-root>
             <Header isAuth={isAuth} currentUser={currentUser} onLogout={onLogout} />
@@ -23,6 +38,23 @@ function AppModule({ isAuth, currentUser, onLogout }) {
 
 // ##################################################
 
+const thunkGetCurrentUser = () => {
+    return dispatch => {
+        AuthService.getCurrentUser()
+            .then(res => {
+                const currentUser = get(res, 'data.user_info_token');
+                dispatch(actionAuthGetCurrentUserSuccess(currentUser));
+                history.push('/');
+            })
+            .catch(err => {
+                const errMsg = err.message || ERROR_UNEXPECTED;
+                dispatch(actionAuthGetCurrentUserError(errMsg));
+            });
+    };
+};
+
+// ##################################################
+
 const mapStateToProps = (state, ownProps) => ({
     ownProps,
     isAuth: state.auth.isAuth,
@@ -30,7 +62,11 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
+    onGetCurrentUser: () => {
+        return dispatch(thunkGetCurrentUser());
+    },
     onLogout: () => {
+        LocalStorageService.del('token');
         history.push('/auth');
         return dispatch(actionAuthLogout());
     },

@@ -48,6 +48,7 @@ export function authReducer(state = initialState, action) {
             return {
                 ...state,
                 ...EMPTY_ERRORS,
+                isAuth: true,
                 currentUser: action.payload.currentUser,
             };
 
@@ -55,6 +56,7 @@ export function authReducer(state = initialState, action) {
             return {
                 ...state,
                 ...EMPTY_ERRORS,
+                isAuth: false,
                 currentUser: null,
                 errorGetCurrentUser: action.payload.errorGetCurrentUser,
             };

@@ -7,9 +7,9 @@ function _generateHeaders() {
     const headers = {};
 
     // "Authorization"
-    const token = LocalStorageService.get('token');
-    if (token) {
-        headers['Authorization'] = `Bearer ${token}`;
+    const accessToken = LocalStorageService.get('token');
+    if (accessToken) {
+        headers['Authorization'] = `Bearer ${accessToken}`;
     }
     // ---
 

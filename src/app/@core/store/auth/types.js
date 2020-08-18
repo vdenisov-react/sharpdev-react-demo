@@ -13,4 +13,5 @@ export const GET_CURRENT_USER_SUCCESS = '[Auth] Get Current User (SUCCESS)';
 export const GET_CURRENT_USER_ERROR = '[Auth] Get Current User (ERROR)';
 // <= CURRENT_USER
 
+export const UPDATE_STATUS = '[Auth] Update Status';
 export const LOGOUT = '[Auth] Log Out';
