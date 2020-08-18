@@ -7,7 +7,7 @@ export const actionAuthLoginSuccess = () => ({
 });
 export const actionAuthLoginError = errMsg => ({
     type: AUTH.LOGIN_ERROR,
-    payload: { loginError: errMsg },
+    payload: { errorLogin: errMsg },
 });
 // <= LOGIN
 
@@ -18,7 +18,7 @@ export const actionAuthRegisterSuccess = () => ({
 });
 export const actionAuthRegisterError = errMsg => ({
     type: AUTH.REGISTER_ERROR,
-    payload: { registerError: errMsg },
+    payload: { errorRegister: errMsg },
 });
 // <= REGISTER
 
@@ -29,7 +29,7 @@ export const actionAuthGetCurrentUserSuccess = userObj => ({
 });
 export const actionAuthGetCurrentUserError = errMsg => ({
     type: AUTH.GET_CURRENT_USER_ERROR,
-    payload: { getCurrentUserError: errMsg },
+    payload: { errorGetCurrentUser: errMsg },
 });
 // <= CURRENT_USER
 

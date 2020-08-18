@@ -111,10 +111,10 @@ export default ({ ctrl }) => (
                     </div>
 
                     {/* errors */}
-                    {ctrl.registerError && (
+                    {ctrl.errorRegister && (
                         <div className="mt-3 text-danger">
                             <span className="font-weight-bold">[{'ERROR'}]</span>
-                            &nbsp;<span>{ctrl.registerError}</span>
+                            &nbsp;<span>{ctrl.errorRegister}</span>
                         </div>
                     )}
                 </form>

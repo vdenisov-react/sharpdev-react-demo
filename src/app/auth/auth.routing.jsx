@@ -11,21 +11,21 @@ export default ({
     modulePath,
     // ---
     onLogin,
-    loginError,
+    errorLogin,
     // ---
     onRegister,
-    registerError,
+    errorRegister,
 }) => {
     return (
         <div>
             <Router history={history}>
                 <Switch>
                     <Route path={`${modulePath}/login`}>
-                        <Login modulePath={modulePath} onLogin={onLogin} loginError={loginError} />
+                        <Login modulePath={modulePath} onLogin={onLogin} errorLogin={errorLogin} />
                     </Route>
 
                     <Route path={`${modulePath}/register`}>
-                        <Register modulePath={modulePath} onRegister={onRegister} registerError={registerError} />
+                        <Register modulePath={modulePath} onRegister={onRegister} errorRegister={errorRegister} />
                     </Route>
 
                     <Redirect exact="*" to={`${modulePath}/login`} />

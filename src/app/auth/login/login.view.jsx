@@ -67,10 +67,10 @@ export default ({ ctrl }) => (
                     </div>
 
                     {/* errors */}
-                    {ctrl.loginError && (
+                    {ctrl.errorLogin && (
                         <div className="mt-3 text-danger">
                             <span className="font-weight-bold">[{'ERROR'}]</span>
-                            &nbsp;<span>{ctrl.loginError}</span>
+                            &nbsp;<span>{ctrl.errorLogin}</span>
                         </div>
                     )}
                 </form>

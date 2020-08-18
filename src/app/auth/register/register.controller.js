@@ -28,7 +28,7 @@ const FORM_VALIDATION = {
     },
 };
 
-export function Register({ modulePath, onRegister, registerError }) {
+export function Register({ modulePath, onRegister, errorRegister }) {
     const { register: formControl, handleSubmit, errors: formErrors, watch } = useForm({
         defaultValues: { email: '', username: '', password: '', confirm: '' },
     });
@@ -57,7 +57,7 @@ export function Register({ modulePath, onRegister, registerError }) {
             ctrl={{
                 formControls,
                 formErrors,
-                registerError,
+                errorRegister,
                 // ---
                 handleSubmit,
                 onProcessRegister,

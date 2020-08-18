@@ -27,10 +27,10 @@ function AuthModule({
     ownProps: { match },
     // ---
     onLogin,
-    loginError,
+    errorLogin,
     // ---
     onRegister,
-    registerError,
+    errorRegister,
 }) {
     const modulePath = match.path;
 
@@ -39,10 +39,10 @@ function AuthModule({
             modulePath={modulePath}
             // ---
             onLogin={onLogin}
-            loginError={loginError}
+            errorLogin={errorLogin}
             // ---
             onRegister={onRegister}
-            registerError={registerError}
+            errorRegister={errorRegister}
         />
     );
 }
@@ -100,8 +100,8 @@ const thunkGetCurrentUser = () => {
 
 const mapStateToProps = ({ auth: authState }, ownProps) => ({
     ownProps,
-    loginError: authState.loginError,
-    registerError: authState.registerError,
+    errorLogin: authState.errorLogin,
+    errorRegister: authState.errorRegister,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

@@ -19,7 +19,7 @@ const FORM_VALIDATION = {
     },
 };
 
-export function Login({ modulePath, onLogin, loginError }) {
+export function Login({ modulePath, onLogin, errorLogin }) {
     const { register: formControl, handleSubmit, errors: formErrors } = useForm({
         defaultValues: { email: '', password: '' },
     });
@@ -43,7 +43,7 @@ export function Login({ modulePath, onLogin, loginError }) {
             ctrl={{
                 formControls,
                 formErrors,
-                loginError,
+                errorLogin,
                 // ---
                 handleSubmit,
                 onProcessLogin,

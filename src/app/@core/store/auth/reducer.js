@@ -8,14 +8,14 @@ export function authReducer(state = initialState, action) {
             return {
                 ...state,
                 isAuth: true,
-                loginError: null,
+                errorLogin: null,
             };
 
         case AUTH.LOGIN_ERROR:
             return {
                 ...state,
                 isAuth: false,
-                loginError: action.payload.loginError,
+                errorLogin: action.payload.errorLogin,
             };
         // <= LOGIN
 
@@ -24,14 +24,14 @@ export function authReducer(state = initialState, action) {
             return {
                 ...state,
                 isAuth: true,
-                registerError: null,
+                errorRegister: null,
             };
 
         case AUTH.REGISTER_ERROR:
             return {
                 ...state,
                 isAuth: false,
-                registerError: action.payload.registerError,
+                errorRegister: action.payload.errorRegister,
             };
         // <= REGISTER
 
@@ -40,13 +40,13 @@ export function authReducer(state = initialState, action) {
             return {
                 ...state,
                 currentUser: action.payload.currentUser,
-                getCurrentUserError: null,
+                errorGetCurrentUser: null,
             };
         case AUTH.GET_CURRENT_USER_ERROR:
             return {
                 ...state,
                 currentUser: null,
-                getCurrentUserError: action.payload.getCurrentUserError,
+                errorGetCurrentUser: action.payload.errorGetCurrentUser,
             };
         // <= CURRENT_USER
 
