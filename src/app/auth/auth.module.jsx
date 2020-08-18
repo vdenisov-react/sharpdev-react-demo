@@ -1,18 +1,26 @@
+// react/redux
 import React from 'react';
 import { connect } from 'react-redux';
+
+// third-party
+import { get } from 'lodash';
 
 // routing
 import RouterOutlet from './auth.routing';
 import { history } from '../@core/navigation';
+
+// store
 import {
     actionAuthLoginSuccess,
     actionAuthLoginError,
     actionAuthRegisterSuccess,
     actionAuthRegisterError,
+    actionAuthGetCurrentUserSuccess,
+    actionAuthGetCurrentUserError,
 } from '../@core/store/auth';
-import { AuthService } from '../@core/api/services';
 
-import { get } from 'lodash';
+// services
+import { AuthService } from '../@core/api/services';
 import { LocalStorageService } from '../@core/services';
 
 function AuthModule({
@@ -48,7 +56,7 @@ const thunkLogin = (email, password) => {
                 const token = get(res, 'data.id_token');
                 LocalStorageService.set('token', token);
                 dispatch(actionAuthLoginSuccess());
-                history.push('/');
+                dispatch(thunkGetCurrentUser());
             })
             .catch(err => {
                 const errMsg = err.message || 'Unexpected login error';
@@ -64,11 +72,26 @@ const thunkRegister = (email, username, password) => {
                 const token = get(res, 'data.id_token');
                 LocalStorageService.set('token', token);
                 dispatch(actionAuthRegisterSuccess());
-                history.push('/');
+                dispatch(thunkGetCurrentUser());
             })
             .catch(err => {
                 const errMsg = err.message || 'Unexpected login error';
                 dispatch(actionAuthRegisterError(errMsg));
+            });
+    };
+};
+
+const thunkGetCurrentUser = () => {
+    return dispatch => {
+        AuthService.getCurrentUser()
+            .then(res => {
+                const currentUser = get(res, 'data.user_info_token');
+                dispatch(actionAuthGetCurrentUserSuccess(currentUser));
+                history.push('/');
+            })
+            .catch(err => {
+                const errMsg = err.message || 'Unexpected login error';
+                dispatch(actionAuthGetCurrentUserError(errMsg));
             });
     };
 };

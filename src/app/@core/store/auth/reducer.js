@@ -35,6 +35,21 @@ export function authReducer(state = initialState, action) {
             };
         // <= REGISTER
 
+        // => CURRENT_USER
+        case AUTH.GET_CURRENT_USER_SUCCESS:
+            return {
+                ...state,
+                currentUser: action.payload.currentUser,
+                getCurrentUserError: null,
+            };
+        case AUTH.GET_CURRENT_USER_ERROR:
+            return {
+                ...state,
+                currentUser: null,
+                getCurrentUserError: action.payload.getCurrentUserError,
+            };
+        // <= CURRENT_USER
+
         case AUTH.LOGOUT:
             return {
                 ...state,

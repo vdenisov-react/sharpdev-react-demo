@@ -1,19 +1,31 @@
+// react/redux
 import React, { useState, useEffect } from 'react';
-import HeaderView from './header.view';
+
+// third-party
+import { get } from 'lodash';
+
+// navigation
 import { history } from '../../@core/navigation';
 
+// template
+import HeaderView from './header.view';
+
 const MENU = [
-    // { key: 0, link: '/auth', label: 'Auth' },
     { key: 1, link: '/', label: 'Home' },
     { key: 2, link: '/users', label: 'Users' },
     { key: 3, link: '/deals', label: 'Deals' },
 ];
 
-export function Header({ isAuth, onLogout }) {
+export function Header({ isAuth, currentUser, onLogout }) {
+    // app title
     const appTitle = 'PW React App';
-    const navMenu = isAuth ? MENU : [];
     const basePath = '/';
 
+    // header menu
+    const navMenu = isAuth ? MENU : [];
+    const userIdentity = isAuth ? get(currentUser, 'email') || 'Authorized' : 'Guest';
+
+    // path/location
     const initLocation = history.location;
     const [currentPath, setCurrentPath] = useState(initLocation.pathname);
 
@@ -46,6 +58,7 @@ export function Header({ isAuth, onLogout }) {
                 appTitle,
                 navMenu,
                 basePath,
+                userIdentity,
                 // ---
                 onLogout,
                 onNavigateTo,

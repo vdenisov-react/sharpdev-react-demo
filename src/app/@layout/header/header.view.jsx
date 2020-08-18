@@ -34,7 +34,7 @@ export default ({ ctrl }) => (
                 </ul>
 
                 <div className="account">
-                    <span className="account__user-name">{ctrl.isAuth ? 'Authorized' : 'Guest'}</span>
+                    <span className="account__user-name">{ctrl.isAuth ? ctrl.userIdentity : 'Guest'}</span>
 
                     {ctrl.isAuth && (
                         <div className="btn-group account__actions ml-4" role="group">

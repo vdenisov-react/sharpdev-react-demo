@@ -22,6 +22,17 @@ export const actionAuthRegisterError = errMsg => ({
 });
 // <= REGISTER
 
+// => CURRENT_USER
+export const actionAuthGetCurrentUserSuccess = userObj => ({
+    type: AUTH.GET_CURRENT_USER_SUCCESS,
+    payload: { currentUser: userObj },
+});
+export const actionAuthGetCurrentUserError = errMsg => ({
+    type: AUTH.GET_CURRENT_USER_ERROR,
+    payload: { getCurrentUserError: errMsg },
+});
+// <= CURRENT_USER
+
 export const actionAuthLogout = () => ({
     type: AUTH.LOGOUT,
 });
