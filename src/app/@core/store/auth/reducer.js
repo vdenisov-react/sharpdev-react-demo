@@ -1,19 +1,26 @@
 import { initialState } from './state';
 import * as AUTH from './types';
 
+const EMPTY_ERRORS = {
+    errorLogin: null,
+    errorRegister: null,
+    errorGetCurrentUser: null,
+};
+
 export function authReducer(state = initialState, action) {
     switch (action.type) {
         // => LOGIN
         case AUTH.LOGIN_SUCCESS:
             return {
                 ...state,
+                ...EMPTY_ERRORS,
                 isAuth: true,
-                errorLogin: null,
             };
 
         case AUTH.LOGIN_ERROR:
             return {
                 ...state,
+                ...EMPTY_ERRORS,
                 isAuth: false,
                 errorLogin: action.payload.errorLogin,
             };
@@ -23,13 +30,14 @@ export function authReducer(state = initialState, action) {
         case AUTH.REGISTER_SUCCESS:
             return {
                 ...state,
+                ...EMPTY_ERRORS,
                 isAuth: true,
-                errorRegister: null,
             };
 
         case AUTH.REGISTER_ERROR:
             return {
                 ...state,
+                ...EMPTY_ERRORS,
                 isAuth: false,
                 errorRegister: action.payload.errorRegister,
             };
@@ -39,12 +47,14 @@ export function authReducer(state = initialState, action) {
         case AUTH.GET_CURRENT_USER_SUCCESS:
             return {
                 ...state,
+                ...EMPTY_ERRORS,
                 currentUser: action.payload.currentUser,
-                errorGetCurrentUser: null,
             };
+
         case AUTH.GET_CURRENT_USER_ERROR:
             return {
                 ...state,
+                ...EMPTY_ERRORS,
                 currentUser: null,
                 errorGetCurrentUser: action.payload.errorGetCurrentUser,
             };
@@ -53,7 +63,9 @@ export function authReducer(state = initialState, action) {
         case AUTH.LOGOUT:
             return {
                 ...state,
+                ...EMPTY_ERRORS,
                 isAuth: false,
+                currentUser: null,
             };
 
         default:
