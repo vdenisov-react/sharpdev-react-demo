@@ -14,7 +14,7 @@ import {
 import { history } from '../../navigation';
 
 // services
-import { AuthService } from '../../api/services';
+import { AuthService, UsersService } from '../../api/services';
 import { LocalStorageService } from '../../services';
 
 // ...
@@ -54,7 +54,7 @@ export const thunkRegister = (email, username, password) => {
 
 export const thunkGetCurrentUser = () => {
     return dispatch => {
-        AuthService.getCurrentUser()
+        UsersService.getCurrent()
             .then(res => {
                 const currentUser = get(res, 'data.user_info_token');
                 dispatch(actionAuthGetCurrentUserSuccess(currentUser));

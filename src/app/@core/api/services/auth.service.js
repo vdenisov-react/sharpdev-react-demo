@@ -12,9 +12,4 @@ export const AuthService = {
         const data = { email, username, password };
         return HttpService.post(path, data);
     },
-
-    getCurrentUser: () => {
-        const path = 'api/protected/user-info';
-        return HttpService.get(path);
-    },
 };
