@@ -12,22 +12,39 @@ import { EMPTY_LINE_WITH_SINGLE_SPACE } from '../@shared/constants';
 
 export function Users() {
     const pageTitle = 'Users page';
+
     const [searchQuery, setSearchQuery] = useState('');
+    const [filterStr, setFilterStr] = useState('');
+    const [usersList, setUsersList] = useState([]);
 
     useEffect(() => {
-        UsersService.getAll(EMPTY_LINE_WITH_SINGLE_SPACE)
+        UsersService.getAll(filterStr || EMPTY_LINE_WITH_SINGLE_SPACE)
             .then(res => {
-                console.log('USERS =>', get(res, 'data'));
+                const users = get(res, 'data');
+                console.log('USERS =>', users);
+                setUsersList(users);
             })
             .catch(err => {
                 console.log('ERR =>', err);
             });
-    }, []);
+    }, [filterStr]);
 
     function submitHandler(event) {
         event.preventDefault();
         console.log('search query =>', searchQuery);
+        setFilterStr(searchQuery);
     }
 
-    return <UsersView ctrl={{ pageTitle, searchQuery, submitHandler, setSearchQuery }} />;
+    return (
+        <UsersView
+            ctrl={{
+                pageTitle,
+                searchQuery,
+                usersList,
+                // ---
+                submitHandler,
+                setSearchQuery,
+            }}
+        />
+    );
 }

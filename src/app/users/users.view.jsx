@@ -21,6 +21,22 @@ export default ({ ctrl }) => (
                     Search
                 </button>
             </form>
+
+            <div className="data-list">
+                {/* USERS LIST */}
+                {ctrl.usersList.length > 0 && (
+                    <ul className="list-group">
+                        {ctrl.usersList.map((user, index) => (
+                            <li key={user.id} className="list-group-item">
+                                {index + 1}. {user.name}
+                            </li>
+                        ))}
+                    </ul>
+                )}
+
+                {/* NO DATA */}
+                {ctrl.usersList.length === 0 && <p className="no-data-msg">no data (try to change search query)</p>}
+            </div>
         </div>
     </app-users>
 
