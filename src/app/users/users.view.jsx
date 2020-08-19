@@ -17,12 +17,20 @@ export default ({ ctrl }) => (
                     onChange={event => ctrl.setSearchQuery(event.target.value)}
                 />
 
-                <button type="submit" className="btn btn-info search-form__button">
+                <button
+                    type="submit"
+                    className="btn btn-info search-form__button"
+                    disabled={ctrl.searchQuery === ctrl.appliedFilter}
+                >
                     Search
                 </button>
             </form>
 
             <div className="data-list">
+                {ctrl.appliedFilter.length !== 0 && ctrl.usersList.length !== 0 && (
+                    <p>Applied filter: "{ctrl.appliedFilter}"</p>
+                )}
+
                 {/* USERS LIST */}
                 {ctrl.usersList.length > 0 && (
                     <ul className="list-group">

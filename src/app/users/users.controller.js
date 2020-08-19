@@ -7,18 +7,15 @@ import UsersView from './users.view';
 // services
 import { UsersService } from '../@core/api/services/users.service';
 
-// ...
-import { EMPTY_LINE_WITH_SINGLE_SPACE } from '../@shared/constants';
-
 export function Users() {
     const pageTitle = 'Users page';
 
     const [searchQuery, setSearchQuery] = useState('');
-    const [filterStr, setFilterStr] = useState('');
+    const [appliedFilter, setAppliedFilter] = useState('');
     const [usersList, setUsersList] = useState([]);
 
     useEffect(() => {
-        UsersService.getAll(filterStr || EMPTY_LINE_WITH_SINGLE_SPACE)
+        UsersService.getAll(appliedFilter)
             .then(res => {
                 const users = get(res, 'data');
                 console.log('USERS =>', users);
@@ -27,12 +24,12 @@ export function Users() {
             .catch(err => {
                 console.log('ERR =>', err);
             });
-    }, [filterStr]);
+    }, [appliedFilter]);
 
     function submitHandler(event) {
         event.preventDefault();
         console.log('search query =>', searchQuery);
-        setFilterStr(searchQuery);
+        setAppliedFilter(searchQuery);
     }
 
     return (
@@ -40,6 +37,7 @@ export function Users() {
             ctrl={{
                 pageTitle,
                 searchQuery,
+                appliedFilter,
                 usersList,
                 // ---
                 submitHandler,
