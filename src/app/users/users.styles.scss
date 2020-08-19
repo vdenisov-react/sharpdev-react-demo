@@ -3,7 +3,29 @@
 app-users {
     display: block;
 
+    .users-list {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        margin: 0 auto;
+    }
+
     .page-title {
-        color: blue !important;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .search-form {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+
+        &__input {
+            width: 50%;
+        }
+
+        &__button {
+            font-weight: bold;
+        }
     }
 }
