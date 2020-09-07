@@ -17,7 +17,7 @@ export function Users() {
     useEffect(() => {
         UsersService.getAll(appliedFilter)
             .then(res => {
-                const users = get(res, 'data');
+                const users = get(res, 'data') || [];
                 console.log('USERS =>', users);
                 setUsersList(users);
             })

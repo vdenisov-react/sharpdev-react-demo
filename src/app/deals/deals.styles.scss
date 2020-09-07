@@ -3,17 +3,15 @@
 app-deals {
     display: block;
 
-    .page-title {
-        color: green !important;
-    }
-
-    .data-list {
-        width: 70%;
+    .deals-list {
+        width: 80%;
         margin: 20px auto;
     }
 
     .no-data-msg {
+        width: auto;
         text-align: center;
+        margin-top: 20px;
         font-size: 20px;
         font-style: italic;
     }

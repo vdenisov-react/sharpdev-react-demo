@@ -8,14 +8,12 @@ import DealsView from './deals.view';
 import { DealsService } from '../@core/api/services';
 
 export function Deals() {
-    const pageTitle = 'Deals page';
-
     const [dealsList, setDealsList] = useState([]);
 
     useEffect(() => {
         DealsService.getAll()
             .then(res => {
-                const deals = get(res, 'data.trans_token');
+                const deals = get(res, 'data.trans_token') || [];
                 console.log('DEALS =>', deals);
                 setDealsList(deals);
             })
@@ -27,7 +25,6 @@ export function Deals() {
     return (
         <DealsView
             ctrl={{
-                pageTitle,
                 dealsList,
             }}
         />
