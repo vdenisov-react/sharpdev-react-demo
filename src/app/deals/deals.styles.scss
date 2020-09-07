@@ -1,7 +1,27 @@
 @import '../../styles/variables';
 
 app-deals {
+    display: block;
+
+    .deals-list {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        margin: 0 auto;
+    }
+
     .page-title {
         color: green !important;
+    }
+
+    .data-list {
+        width: 70%;
+        margin: 20px auto;
+    }
+
+    .no-data-msg {
+        text-align: center;
+        font-size: 20px;
+        font-style: italic;
     }
 }

@@ -6,7 +6,7 @@ export default ({ ctrl }) => (
 
     <app-users>
         <div className="users-list mt-3">
-            <h4 className="page-title">USERS LIST</h4>
+            <h4 className="page-title">{ctrl.pageTitle}</h4>
 
             <form className="search-form" onSubmit={ctrl.submitHandler}>
                 <input
