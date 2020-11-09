@@ -24,7 +24,7 @@ export const thunkLogin = (email, password) => {
     return dispatch => {
         AuthService.login(email, password)
             .then(res => {
-                const token = get(res, 'data.id_token');
+                const token = get(res, 'data.id_token') || null;
                 LocalStorageService.set('token', token);
                 dispatch(actionAuthLoginSuccess());
                 dispatch(thunkGetCurrentUser());
@@ -40,7 +40,7 @@ export const thunkRegister = (email, username, password) => {
     return dispatch => {
         AuthService.register(email, username, password)
             .then(res => {
-                const token = get(res, 'data.id_token');
+                const token = get(res, 'data.id_token') || null;
                 LocalStorageService.set('token', token);
                 dispatch(actionAuthRegisterSuccess());
                 dispatch(thunkGetCurrentUser());
@@ -56,7 +56,7 @@ export const thunkGetCurrentUser = () => {
     return dispatch => {
         UsersService.getCurrent()
             .then(res => {
-                const currentUser = get(res, 'data.user_info_token');
+                const currentUser = get(res, 'data.user_info_token') || null;
                 dispatch(actionAuthGetCurrentUserSuccess(currentUser));
                 history.push('/');
             })

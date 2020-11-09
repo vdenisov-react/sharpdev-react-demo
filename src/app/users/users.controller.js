@@ -5,7 +5,7 @@ import { get } from 'lodash';
 import UsersView from './users.view';
 
 // services
-import { UsersService } from '../@core/api/services/users.service';
+import { UsersService } from '../@core/api/services';
 
 export function Users() {
     const pageTitle = 'Users page';
@@ -17,7 +17,7 @@ export function Users() {
     useEffect(() => {
         UsersService.getAll(appliedFilter)
             .then(res => {
-                const users = get(res, 'data');
+                const users = get(res, 'data') || [];
                 console.log('USERS =>', users);
                 setUsersList(users);
             })
