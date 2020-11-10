@@ -17,8 +17,8 @@ import { LocalStorageService } from './@core/services';
 
 // modules
 import Auth from './auth/auth';
-import { Users } from './users/users.controller';
-import { Deals } from './deals/deals.controller';
+import { Users } from './users/users';
+import { Deals } from './deals/deals';
 
 function App({ isAuth, currentUser, onGetCurrentUser, onLogout }) {
     useEffect(() => {
