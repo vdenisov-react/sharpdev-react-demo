@@ -9,8 +9,8 @@ import { history } from '../@core/navigation';
 import { thunkLogin, thunkRegister } from '../@core/store/auth';
 
 // pages
-import { Login } from './login/login.controller';
-import { Register } from './register/register.controller';
+import { Login } from './login/login';
+import { Register } from './register/register';
 
 function Auth({
     onLogin,
