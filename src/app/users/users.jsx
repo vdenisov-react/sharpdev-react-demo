@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { get } from 'lodash';
 
 // services
@@ -14,17 +14,20 @@ export function Users() {
     const [appliedFilter, setAppliedFilter] = useState('');
     const [usersList, setUsersList] = useState([]);
 
+    const getUsersList = useCallback(async appliedFilter => {
+        try {
+            const res = await UsersService.getAll(appliedFilter);
+            const users = get(res, 'data') || [];
+            console.log('USERS =>', users);
+            setUsersList(users);
+        } catch (err) {
+            console.log('ERR =>', err);
+        }
+    }, []);
+
     useEffect(() => {
-        UsersService.getAll(appliedFilter)
-            .then(res => {
-                const users = get(res, 'data') || [];
-                console.log('USERS =>', users);
-                setUsersList(users);
-            })
-            .catch(err => {
-                console.log('ERR =>', err);
-            });
-    }, [appliedFilter]);
+        getUsersList(appliedFilter);
+    }, [appliedFilter, getUsersList]);
 
     function submitHandler(event) {
         event.preventDefault();

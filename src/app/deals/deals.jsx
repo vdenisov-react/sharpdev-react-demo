@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { get } from 'lodash';
 
 // services
@@ -11,17 +11,20 @@ import cn from 'classnames';
 export function Deals() {
     const [dealsList, setDealsList] = useState([]);
 
-    useEffect(() => {
-        DealsService.getAll()
-            .then(res => {
-                const deals = get(res, 'data.trans_token') || [];
-                console.log('DEALS =>', deals);
-                setDealsList(deals);
-            })
-            .catch(err => {
-                console.log('ERR =>', err);
-            });
+    const getDealsList = useCallback(async () => {
+        try {
+            const res = await DealsService.getAll();
+            const deals = get(res, 'data.trans_token') || [];
+            console.log('DEALS =>', deals);
+            setDealsList(deals);
+        } catch (err) {
+            console.log('ERR =>', err);
+        }
     }, []);
+
+    useEffect(() => {
+        getDealsList();
+    }, [getDealsList]);
 
     return (
         <app-deals>
