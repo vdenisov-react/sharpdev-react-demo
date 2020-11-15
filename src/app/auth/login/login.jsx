@@ -1,7 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 
-import { history } from '../../@core/navigation';
 import { PATTERN_EMAIL } from '../../@shared/constants';
 
 // styles
@@ -21,7 +20,7 @@ const FORM_VALIDATION = {
     },
 };
 
-export function Login({ modulePath, onLogin, errorLogin }) {
+export function Login({ onLogin, errorLogin, goToRegister }) {
     const { register: formControl, handleSubmit, errors: formErrors } = useForm({
         defaultValues: { email: '', password: '' },
     });
@@ -34,10 +33,6 @@ export function Login({ modulePath, onLogin, errorLogin }) {
     function onProcessLogin(data) {
         const { email, password } = data;
         onLogin(email, password);
-    }
-
-    function goToRegister() {
-        history.push(`${modulePath}/register`);
     }
 
     return (
