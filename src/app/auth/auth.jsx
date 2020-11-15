@@ -1,21 +1,26 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 
+// core
 import { history } from '../@core/navigation';
 
-// pages
-import { Login } from './login/login.controller';
-import { Register } from './register/register.controller';
+// store
+import { thunkLogin, thunkRegister } from '../@core/store/auth';
 
-export default ({
-    modulePath,
-    // ---
+// pages
+import { Login } from './login/login';
+import { Register } from './register/register';
+
+function Auth({
     onLogin,
     errorLogin,
     // ---
     onRegister,
     errorRegister,
-}) => {
+}) {
+    const modulePath = '/auth';
+
     return (
         <div>
             <Router history={history}>
@@ -33,4 +38,22 @@ export default ({
             </Router>
         </div>
     );
-};
+}
+
+// ##################################################
+
+const mapStateToProps = ({ auth: authState }) => ({
+    errorLogin: authState.errorLogin,
+    errorRegister: authState.errorRegister,
+});
+
+const mapDispatchToProps = dispatch => ({
+    onLogin: (email, password) => {
+        return dispatch(thunkLogin(email, password));
+    },
+    onRegister: (email, username, password) => {
+        return dispatch(thunkRegister(email, username, password));
+    },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);
