@@ -15,7 +15,7 @@ import { actionAuthLogout, thunkGetCurrentUser } from './@core/store/auth';
 // services
 import { LocalStorageService } from './@core/services';
 
-// modules
+// components
 import Auth from './auth/auth';
 import { Users } from './users/users';
 import { Deals } from './deals/deals';

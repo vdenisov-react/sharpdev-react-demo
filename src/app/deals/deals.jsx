@@ -8,8 +8,12 @@ import { DealsService } from '../@core/api/services';
 import './deals.scss';
 import cn from 'classnames';
 
+// components
+import { AddingForm } from './adding-form/adding-form';
+
 export function Deals() {
     const [dealsList, setDealsList] = useState([]);
+    const [isAdding, setAddingFlag] = useState(false);
 
     useEffect(() => {
         let mounted = true;
@@ -31,8 +35,29 @@ export function Deals() {
         };
     }, []);
 
+    function onOpenForm() {
+        setAddingFlag(true);
+    }
+
+    function onCancelAdding() {
+        setAddingFlag(false);
+    }
+
+    function onCreateDeal(data) {
+        console.log('NEW DEAL =>', data);
+        setAddingFlag(false);
+    }
+
     return (
         <app-deals>
+            {!isAdding && (
+                <button type="button" className="btn btn-outline-primary add-button" onClick={onOpenForm}>
+                    Add new
+                </button>
+            )}
+
+            {isAdding && <AddingForm onCancelAdding={onCancelAdding} onCreateDeal={onCreateDeal} />}
+
             <div className="mt-3 deals-list">
                 {/* DEALS LIST */}
                 <table className="table">

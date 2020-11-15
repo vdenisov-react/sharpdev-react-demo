@@ -1,0 +1,26 @@
+app-adding-form {
+    .adding-form {
+        display: block;
+        margin: 20px auto;
+        max-width: 20rem;
+    }
+
+    .card-header {
+        font-size: 25px;
+        font-weight: bold;
+    }
+
+    .action-button {
+        width: 5rem;
+        font-size: 20px;
+        border-radius: 5px;
+        letter-spacing: 1px;
+    }
+
+    .field-error {
+        width: 100%;
+        margin-top: 0.25rem;
+        font-size: 80%;
+        color: #dc3545;
+    }
+}

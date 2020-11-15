@@ -3,6 +3,11 @@
 app-deals {
     display: block;
 
+    .add-button {
+        display: block;
+        margin: 20px auto;
+    }
+
     .deals-list {
         width: 80%;
         margin: 20px auto;
