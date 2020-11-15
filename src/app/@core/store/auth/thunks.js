@@ -56,7 +56,7 @@ export const thunkGetCurrentUser = () => {
             const res = await UsersService.getCurrent();
             const currentUser = get(res, 'data.user_info_token') || null;
             dispatch(actionAuthGetCurrentUserSuccess(currentUser));
-            history.push('/');
+            history.push('/deals');
         } catch (err) {
             const errMsg = parseError(err);
             dispatch(actionAuthGetCurrentUserError(errMsg));

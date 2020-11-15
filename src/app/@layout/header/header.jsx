@@ -8,9 +8,8 @@ import { history } from '../../@core/navigation';
 import './header.scss';
 
 const MENU = [
-    { key: 1, link: '/', label: 'Home' },
-    { key: 2, link: '/users', label: 'Users' },
-    { key: 3, link: '/deals', label: 'Deals' },
+    { key: 1, link: '/users', label: 'Users' },
+    { key: 2, link: '/deals', label: 'Deals' },
 ];
 
 export function Header({ isAuth, currentUser, onLogout }) {
