@@ -31,15 +31,17 @@ function Auth({
     }
 
     return (
-        <div>
-            {currentPage === pages.LOGIN && (
-                <Login onLogin={onLogin} errorLogin={errorLogin} goToRegister={goToRegister} />
-            )}
+        <app-auth>
+            <div>
+                {currentPage === pages.LOGIN && (
+                    <Login onLogin={onLogin} errorLogin={errorLogin} goToRegister={goToRegister} />
+                )}
 
-            {currentPage === pages.REGISTER && (
-                <Register onRegister={onRegister} errorRegister={errorRegister} goToLogin={goToLogin} />
-            )}
-        </div>
+                {currentPage === pages.REGISTER && (
+                    <Register onRegister={onRegister} errorRegister={errorRegister} goToLogin={goToLogin} />
+                )}
+            </div>
+        </app-auth>
     );
 }
 
