@@ -9,8 +9,10 @@ app-deals {
     }
 
     .deals-list {
-        width: 80%;
         margin: 20px auto;
+        width: 80%;
+        height: 300px;
+        overflow-y: auto;
     }
 
     .no-data-msg {
