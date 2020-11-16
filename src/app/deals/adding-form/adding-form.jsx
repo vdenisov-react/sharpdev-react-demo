@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 // styles
@@ -13,8 +13,17 @@ const FORM_VALIDATION = {
     },
 };
 
-export function AddingForm({ onCreateDeal }) {
-    const { register: formControl, handleSubmit, errors: formErrors, reset: resetForm } = useForm({
+export function AddingForm({ selectedUser, onSearchUsers, onCreateDeal }) {
+    const [searchQuery, setSearchQuery] = useState('');
+
+    const {
+        register: formControl,
+        errors: formErrors,
+        // ---
+        reset: resetForm,
+        handleSubmit,
+        setValue,
+    } = useForm({
         defaultValues: { user: '', amount: '' },
     });
 
@@ -22,6 +31,14 @@ export function AddingForm({ onCreateDeal }) {
         user: formControl({ ...FORM_VALIDATION.USER }),
         amount: formControl({ ...FORM_VALIDATION.AMOUNT }),
     };
+
+    useEffect(() => {
+        onSearchUsers(searchQuery);
+    }, [searchQuery]);
+
+    useEffect(() => {
+        setValue('user', selectedUser);
+    }, [selectedUser]);
 
     function onProcessAdd(data) {
         resetForm();
@@ -47,6 +64,7 @@ export function AddingForm({ onCreateDeal }) {
                                 id="input-user"
                                 className={'form-control' + (formErrors.user ? ' is-invalid' : '')}
                                 placeholder="enter user ..."
+                                onChange={event => setSearchQuery(event.target.value)}
                             />
 
                             {/* errors */}
