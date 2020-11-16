@@ -24,13 +24,13 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 // ---
 
-import AppModule from './app/app.module';
+import App from './app/app';
 
 const appStore = createStore(appReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(
     <Provider store={appStore}>
-        <AppModule />
+        <App />
     </Provider>,
     document.getElementById('root'),
 );
