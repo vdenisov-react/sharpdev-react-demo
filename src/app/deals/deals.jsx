@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+
 import { get } from 'lodash';
+
+// store
+import { thunkAddNew } from '../@core/store/deals';
 
 // services
 import { DealsService } from '../@core/api/services';
@@ -11,7 +16,7 @@ import cn from 'classnames';
 // components
 import { AddingForm } from './adding-form/adding-form';
 
-export function Deals() {
+function Deals({ onAddNew }) {
     const [dealsList, setDealsList] = useState([]);
     const [isAdding, setAddingFlag] = useState(false);
 
@@ -43,9 +48,9 @@ export function Deals() {
         setAddingFlag(false);
     }
 
-    function onCreateDeal(data) {
-        console.log('NEW DEAL =>', data);
+    function onCreateDeal(user, amount) {
         setAddingFlag(false);
+        onAddNew(user, amount);
     }
 
     return (
@@ -106,3 +111,17 @@ export function Deals() {
         </app-deals>
     );
 }
+
+// ##################################################
+
+const mapStateToProps = ({ deals: dealsState }) => ({
+    errorAddNew: dealsState.errorAddNew,
+});
+
+const mapDispatchToProps = dispatch => ({
+    onAddNew: (user, amount) => {
+        return dispatch(thunkAddNew(user, amount));
+    },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Deals);

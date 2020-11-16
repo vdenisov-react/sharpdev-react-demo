@@ -15,10 +15,10 @@ import { actionAuthLogout, thunkGetCurrentUser } from './@core/store/auth';
 // services
 import { LocalStorageService } from './@core/services';
 
-// components
+// pages
 import Auth from './auth/auth';
+import Deals from './deals/deals';
 import { Users } from './users/users';
-import { Deals } from './deals/deals';
 
 function App({ isAuth, currentUser, onGetCurrentUser, onLogout }) {
     useEffect(() => {

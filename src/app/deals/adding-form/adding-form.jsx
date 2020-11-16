@@ -25,7 +25,7 @@ export function AddingForm({ onCancelAdding, onCreateDeal }) {
 
     function onProcessAdd(data) {
         const { user, amount } = data;
-        onCreateDeal({ user, amount });
+        onCreateDeal(user, amount);
     }
 
     return (
