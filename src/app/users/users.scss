@@ -30,8 +30,11 @@ app-users {
     }
 
     .data-list {
-        width: 70%;
+        display: block;
         margin: 20px auto;
+        width: 70%;
+        height: 300px;
+        overflow-y: auto;
     }
 
     .no-data-msg {

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, Fragment } from 'react';
-import { get } from 'lodash';
 
 // navigation
 import { history } from '../../@core/navigation';
