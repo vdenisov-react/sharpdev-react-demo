@@ -1,7 +1,12 @@
 import { get } from 'lodash';
 
 // store
-import { actionDealsAddNewSuccess, actionDealsAddNewError } from './actions';
+import {
+    actionDealsAddNewSuccess,
+    actionDealsAddNewError,
+    actionDealsGetListSuccess,
+    actionDealsGetListError,
+} from './actions';
 
 // services
 import { DealsService } from '../../api/services';
@@ -13,11 +18,24 @@ export const thunkAddNew = (user, amount) => {
     return async dispatch => {
         try {
             const res = await DealsService.addNew(user, amount);
-            const deal = get(res, 'trans_token') || null;
-            dispatch(actionDealsAddNewSuccess(deal));
+            const dealObj = get(res, 'data.trans_token') || null;
+            dispatch(actionDealsAddNewSuccess(dealObj));
         } catch (err) {
             const errMsg = parseError(err);
             dispatch(actionDealsAddNewError(errMsg));
+        }
+    };
+};
+
+export const thunkGetList = () => {
+    return async dispatch => {
+        try {
+            const res = await DealsService.getAll();
+            const dealArr = get(res, 'data.trans_token') || [];
+            dispatch(actionDealsGetListSuccess(dealArr));
+        } catch (err) {
+            const errMsg = parseError(err);
+            dispatch(actionDealsGetListError(errMsg));
         }
     };
 };

@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 
-import { get } from 'lodash';
-
 // store
-import { thunkAddNew } from '../@core/store/deals';
-
-// services
-import { DealsService } from '../@core/api/services';
+import { thunkAddNew, thunkGetList } from '../@core/store/deals';
 
 // styles
 import './deals.scss';
@@ -16,29 +11,12 @@ import cn from 'classnames';
 // components
 import { AddingForm } from './adding-form/adding-form';
 
-function Deals({ onAddNew }) {
-    const [dealsList, setDealsList] = useState([]);
+function Deals({ dealsList, onAddNew, onGetList }) {
     const [isAdding, setAddingFlag] = useState(false);
 
     useEffect(() => {
-        let mounted = true;
-
-        DealsService.getAll()
-            .then(res => {
-                if (mounted) {
-                    const deals = get(res, 'data.trans_token') || [];
-                    console.log('DEALS =>', deals);
-                    setDealsList(deals);
-                }
-            })
-            .catch(err => {
-                console.log('ERR =>', err);
-            });
-
-        return function cleanup() {
-            mounted = false;
-        };
-    }, []);
+        onGetList();
+    }, [onGetList]);
 
     function onOpenForm() {
         setAddingFlag(true);
@@ -115,10 +93,14 @@ function Deals({ onAddNew }) {
 // ##################################################
 
 const mapStateToProps = ({ deals: dealsState }) => ({
+    dealsList: dealsState.dealsList,
     errorAddNew: dealsState.errorAddNew,
 });
 
 const mapDispatchToProps = dispatch => ({
+    onGetList: () => {
+        return dispatch(thunkGetList());
+    },
     onAddNew: (user, amount) => {
         return dispatch(thunkAddNew(user, amount));
     },
