@@ -7,7 +7,7 @@ import { history } from './@core/navigation';
 
 // layouts
 import { Header } from './@layout';
-import { Home, NotFound } from './@layout';
+import { NotFound } from './@layout';
 
 // store
 import { actionAuthLogout, thunkGetCurrentUser } from './@core/store/auth';
@@ -15,10 +15,10 @@ import { actionAuthLogout, thunkGetCurrentUser } from './@core/store/auth';
 // services
 import { LocalStorageService } from './@core/services';
 
-// modules
+// pages
 import Auth from './auth/auth';
+import Deals from './deals/deals';
 import { Users } from './users/users';
-import { Deals } from './deals/deals';
 
 function App({ isAuth, currentUser, onGetCurrentUser, onLogout }) {
     useEffect(() => {
@@ -36,17 +36,17 @@ function App({ isAuth, currentUser, onGetCurrentUser, onLogout }) {
                         {/* RANDOM GUEST */}
                         {!isAuth && (
                             <Fragment>
-                                <Redirect exact="/" to="/auth" />
                                 <Route path="/auth" component={Auth} />
+                                <Redirect exact="/" to="/auth" />
                             </Fragment>
                         )}
 
                         {/* AUTHORIZED USER */}
                         {isAuth && (
                             <Fragment>
-                                <Route path="/" exact component={Home} />
                                 <Route path="/deals" component={Deals} />
                                 <Route path="/users" component={Users} />
+                                <Redirect exact="/" to="/deals" />
                             </Fragment>
                         )}
 

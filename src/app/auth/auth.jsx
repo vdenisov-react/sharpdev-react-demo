@@ -1,9 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { Router, Route, Switch, Redirect } from 'react-router-dom';
-
-// core
-import { history } from '../@core/navigation';
 
 // store
 import { thunkLogin, thunkRegister } from '../@core/store/auth';
@@ -12,6 +8,11 @@ import { thunkLogin, thunkRegister } from '../@core/store/auth';
 import { Login } from './login/login';
 import { Register } from './register/register';
 
+const pages = {
+    LOGIN: 'login',
+    REGISTER: 'register',
+};
+
 function Auth({
     onLogin,
     errorLogin,
@@ -19,24 +20,28 @@ function Auth({
     onRegister,
     errorRegister,
 }) {
-    const modulePath = '/auth';
+    const [currentPage, setCurrentPage] = useState(pages.LOGIN);
+
+    function goToRegister() {
+        setCurrentPage(pages.REGISTER);
+    }
+
+    function goToLogin() {
+        setCurrentPage(pages.LOGIN);
+    }
 
     return (
-        <div>
-            <Router history={history}>
-                <Switch>
-                    <Route path={`${modulePath}/login`}>
-                        <Login modulePath={modulePath} onLogin={onLogin} errorLogin={errorLogin} />
-                    </Route>
+        <app-auth>
+            <div>
+                {currentPage === pages.LOGIN && (
+                    <Login onLogin={onLogin} errorLogin={errorLogin} goToRegister={goToRegister} />
+                )}
 
-                    <Route path={`${modulePath}/register`}>
-                        <Register modulePath={modulePath} onRegister={onRegister} errorRegister={errorRegister} />
-                    </Route>
-
-                    <Redirect exact="*" to={`${modulePath}/login`} />
-                </Switch>
-            </Router>
-        </div>
+                {currentPage === pages.REGISTER && (
+                    <Register onRegister={onRegister} errorRegister={errorRegister} goToLogin={goToLogin} />
+                )}
+            </div>
+        </app-auth>
     );
 }
 

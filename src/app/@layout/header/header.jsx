@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { get } from 'lodash';
 
 // navigation
@@ -8,9 +8,8 @@ import { history } from '../../@core/navigation';
 import './header.scss';
 
 const MENU = [
-    { key: 1, link: '/', label: 'Home' },
-    { key: 2, link: '/users', label: 'Users' },
-    { key: 3, link: '/deals', label: 'Deals' },
+    { key: 1, link: '/users', label: 'Users' },
+    { key: 2, link: '/deals', label: 'Deals' },
 ];
 
 export function Header({ isAuth, currentUser, onLogout }) {
@@ -20,7 +19,6 @@ export function Header({ isAuth, currentUser, onLogout }) {
 
     // header menu
     const navMenu = isAuth ? MENU : [];
-    const userIdentity = isAuth ? get(currentUser, 'email') || 'Authorized' : 'Guest';
 
     // path/location
     const initLocation = history.location;
@@ -75,14 +73,19 @@ export function Header({ isAuth, currentUser, onLogout }) {
                     </ul>
 
                     <div className="account">
-                        <span className="account__user-name">{isAuth ? userIdentity : 'Guest'}</span>
+                        {!isAuth && <span className="account__user-name">Guest</span>}
 
                         {isAuth && (
-                            <div className="btn-group account__actions ml-4" role="group">
-                                <button type="button" className="btn btn-danger" onClick={onLogout}>
-                                    Log Out
-                                </button>
-                            </div>
+                            <Fragment>
+                                <span className="account__user-name">{currentUser.name || 'Authorized'}</span>
+                                <span className="account__user-balance">{'=> ' + currentUser.balance + ' <='}</span>
+
+                                <div className="btn-group account__actions ml-4" role="group">
+                                    <button type="button" className="btn btn-danger" onClick={onLogout}>
+                                        Log Out
+                                    </button>
+                                </div>
+                            </Fragment>
                         )}
                     </div>
                 </div>
