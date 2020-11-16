@@ -13,8 +13,8 @@ const FORM_VALIDATION = {
     },
 };
 
-export function AddingForm({ onCancelAdding, onCreateDeal }) {
-    const { register: formControl, handleSubmit, errors: formErrors } = useForm({
+export function AddingForm({ onCreateDeal }) {
+    const { register: formControl, handleSubmit, errors: formErrors, reset: resetForm } = useForm({
         defaultValues: { user: '', amount: '' },
     });
 
@@ -24,15 +24,16 @@ export function AddingForm({ onCancelAdding, onCreateDeal }) {
     };
 
     function onProcessAdd(data) {
+        resetForm();
         const { user, amount } = data;
         onCreateDeal(user, amount);
     }
 
     return (
         <app-adding-form>
-            <div className="card border-primary adding-form">
+            <div className="card border-primary adding-card">
                 <div className="card-body">
-                    <form onSubmit={handleSubmit(onProcessAdd)}>
+                    <form className="adding-form" onSubmit={handleSubmit(onProcessAdd)}>
                         {/* USER */}
                         <div className="form-group">
                             <label htmlFor="input-user" className="form-control-label font-weight-bold">
@@ -72,19 +73,9 @@ export function AddingForm({ onCancelAdding, onCreateDeal }) {
                         </div>
 
                         {/* ADD */}
-                        <div className="mt-3 d-flex justify-content-around">
-                            <button type="submit" className="btn btn-success btn-sm action-button">
-                                add
-                            </button>
-
-                            <button
-                                type="button"
-                                className="btn btn-danger btn-sm action-button"
-                                onClick={onCancelAdding}
-                            >
-                                cancel
-                            </button>
-                        </div>
+                        <button type="submit" className="btn btn-success btn-sm adding-button">
+                            add
+                        </button>
                     </form>
                 </div>
             </div>

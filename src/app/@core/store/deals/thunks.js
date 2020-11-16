@@ -20,6 +20,7 @@ export const thunkAddNew = (user, amount) => {
             const res = await DealsService.addNew(user, amount);
             const dealObj = get(res, 'data.trans_token') || null;
             dispatch(actionDealsAddNewSuccess(dealObj));
+            dispatch(thunkGetList());
         } catch (err) {
             const errMsg = parseError(err);
             dispatch(actionDealsAddNewError(errMsg));

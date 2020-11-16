@@ -12,34 +12,17 @@ import cn from 'classnames';
 import { AddingForm } from './adding-form/adding-form';
 
 function Deals({ dealsList, onAddNew, onGetList }) {
-    const [isAdding, setAddingFlag] = useState(false);
-
     useEffect(() => {
         onGetList();
     }, [onGetList]);
 
-    function onOpenForm() {
-        setAddingFlag(true);
-    }
-
-    function onCancelAdding() {
-        setAddingFlag(false);
-    }
-
     function onCreateDeal(user, amount) {
-        setAddingFlag(false);
         onAddNew(user, amount);
     }
 
     return (
         <app-deals>
-            {!isAdding && (
-                <button type="button" className="btn btn-outline-primary add-button" onClick={onOpenForm}>
-                    Add new
-                </button>
-            )}
-
-            {isAdding && <AddingForm onCancelAdding={onCancelAdding} onCreateDeal={onCreateDeal} />}
+            <AddingForm onCreateDeal={onCreateDeal} />
 
             <div className="mt-3 deals-list">
                 {/* DEALS LIST */}
