@@ -18,7 +18,6 @@ import { LocalStorageService } from './@core/services';
 // pages
 import Auth from './auth/auth';
 import Deals from './deals/deals';
-import { Users } from './users/users';
 
 function App({ isAuth, currentUser, onGetCurrentUser, onLogout }) {
     useEffect(() => {
@@ -45,7 +44,6 @@ function App({ isAuth, currentUser, onGetCurrentUser, onLogout }) {
                         {isAuth && (
                             <Fragment>
                                 <Route path="/deals" component={Deals} />
-                                <Route path="/users" component={Users} />
                                 <Redirect exact="/" to="/deals" />
                             </Fragment>
                         )}

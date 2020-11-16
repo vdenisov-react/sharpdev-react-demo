@@ -1,0 +1,28 @@
+app-users-list {
+    display: block;
+
+    .users-list {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    .data-list {
+        display: block;
+        margin: 20px auto;
+        width: 70%;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .list-group-item {
+        cursor: pointer;
+    }
+
+    .no-data-msg {
+        text-align: center;
+        font-size: 20px;
+        font-style: italic;
+    }
+}

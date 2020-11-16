@@ -1,8 +1,14 @@
 app-adding-form {
-    .adding-form {
+    .adding-card {
         display: block;
+        width: 80%;
         margin: 20px auto;
-        max-width: 20rem;
+    }
+
+    .adding-form {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-around;
     }
 
     .card-header {
@@ -10,7 +16,12 @@ app-adding-form {
         font-weight: bold;
     }
 
-    .action-button {
+    .form-group {
+        width: 40%;
+        margin-bottom: 0;
+    }
+
+    .adding-button {
         width: 5rem;
         font-size: 20px;
         border-radius: 5px;
