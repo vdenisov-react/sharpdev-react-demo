@@ -34,11 +34,11 @@ export function AddingForm({ selectedUser, onSearchUsers, onCreateDeal }) {
 
     useEffect(() => {
         onSearchUsers(searchQuery);
-    }, [searchQuery]);
+    }, [searchQuery, onSearchUsers]);
 
     useEffect(() => {
         setValue('user', selectedUser);
-    }, [selectedUser]);
+    }, [selectedUser, setValue]);
 
     function onProcessAdd(data) {
         resetForm();

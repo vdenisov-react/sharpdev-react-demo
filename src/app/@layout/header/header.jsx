@@ -6,10 +6,7 @@ import { history } from '../../@core/navigation';
 // styles
 import './header.scss';
 
-const MENU = [
-    { key: 1, link: '/users', label: 'Users' },
-    { key: 2, link: '/deals', label: 'Deals' },
-];
+const MENU = [];
 
 export function Header({ isAuth, currentUser, onLogout }) {
     // app title
@@ -76,8 +73,11 @@ export function Header({ isAuth, currentUser, onLogout }) {
 
                         {isAuth && (
                             <Fragment>
-                                <span className="account__user-name">{currentUser.name || 'Authorized'}</span>
-                                <span className="account__user-balance">{'=> ' + currentUser.balance + ' <='}</span>
+                                <span className="account__user-name">
+                                    {currentUser ? currentUser.name : 'Authorized'}
+                                </span>
+
+                                <span className="account__user-balance">{currentUser ? currentUser.balance : 0}</span>
 
                                 <div className="btn-group account__actions ml-4" role="group">
                                     <button type="button" className="btn btn-danger" onClick={onLogout}>
