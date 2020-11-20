@@ -34,10 +34,10 @@ export function AddingForm({ selectedUser, onSearchUsers, onCreateDeal }) {
 
     useEffect(() => {
         onSearchUsers(searchQuery);
-    }, [searchQuery, onSearchUsers]);
+    }, [searchQuery]);
 
     useEffect(() => {
-        setValue('user', selectedUser);
+        // setValue('user', selectedUser);
     }, [selectedUser, setValue]);
 
     function onProcessAdd(data) {
