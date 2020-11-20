@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { INTERNAL_CURRENCY_SYMBOL } from '../../@shared/constants';
+
 // styles
 import './deals-table.scss';
 import cn from 'classnames';
@@ -35,8 +37,14 @@ export function DealsTable({ dealsList }) {
                                 >
                                     <th scope="row">{index + 1}</th>
                                     <td>{deal.username}</td>
-                                    <td>{deal.amount}</td>
-                                    <td>{deal.balance}</td>
+                                    <td>
+                                        {deal.amount}
+                                        {INTERNAL_CURRENCY_SYMBOL}
+                                    </td>
+                                    <td>
+                                        {deal.balance}
+                                        {INTERNAL_CURRENCY_SYMBOL}
+                                    </td>
                                     <td>{deal.date}</td>
                                 </tr>
                             ))}
