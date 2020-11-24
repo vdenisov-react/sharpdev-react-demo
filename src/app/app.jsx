@@ -18,8 +18,6 @@ import '../utils/fontAwesome';
 import Auth from './auth/auth';
 import Deals from './deals/deals';
 
-import { Test } from './test';
-
 function App({ isAuth, currentUser, onGetCurrentUser, onLogout }) {
     useEffect(() => {
         const accessToken = LocalStorageService.get('token');
@@ -28,8 +26,6 @@ function App({ isAuth, currentUser, onGetCurrentUser, onLogout }) {
 
     return (
         <app-root>
-            <Test message={'Hello, Typescript'} />
-
             <Header isAuth={isAuth} currentUser={currentUser} onLogout={onLogout} />
 
             <div className="content">
