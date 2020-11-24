@@ -18,8 +18,9 @@ import { UsersList } from './users-list/users-list';
 function Deals({ dealsList, onAddNew, onGetList }) {
     const [usersList, setUsersList] = useState([]);
     const [isSearching, setSearchingFlag] = useState(false);
-
     const [selectedUser, setSelectedUser] = useState(null);
+
+    const [copiedDeal, setCopiedDeal] = useState(null);
     const [repeatedDeal, setRepeatedDeal] = useState(null);
 
     useEffect(() => {
@@ -51,6 +52,10 @@ function Deals({ dealsList, onAddNew, onGetList }) {
         [onAddNew],
     );
 
+    function onCopyDeal(deal) {
+        setCopiedDeal(deal);
+    }
+
     function onRepeatDeal(deal) {
         setRepeatedDeal(deal);
     }
@@ -59,6 +64,7 @@ function Deals({ dealsList, onAddNew, onGetList }) {
         <app-deals>
             <AddingForm
                 selectedUser={selectedUser}
+                copiedDeal={copiedDeal}
                 repeatedDeal={repeatedDeal}
                 onSearchUsers={onSearchUsers}
                 onCreateDeal={onCreateDeal}
@@ -66,7 +72,7 @@ function Deals({ dealsList, onAddNew, onGetList }) {
 
             {isSearching && <UsersList usersList={usersList} onSelectUser={onSelectUser} />}
 
-            <DealsTable dealsList={dealsList} onRepeatDeal={onRepeatDeal} />
+            <DealsTable dealsList={dealsList} onCopyDeal={onCopyDeal} onRepeatDeal={onRepeatDeal} />
         </app-deals>
     );
 }

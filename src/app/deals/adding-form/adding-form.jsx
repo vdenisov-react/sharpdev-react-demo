@@ -13,7 +13,7 @@ const FORM_VALIDATION = {
     },
 };
 
-export function AddingForm({ selectedUser, repeatedDeal, onSearchUsers, onCreateDeal }) {
+export function AddingForm({ selectedUser, copiedDeal, repeatedDeal, onSearchUsers, onCreateDeal }) {
     const [searchQuery, setSearchQuery] = useState('');
 
     const {
@@ -21,8 +21,8 @@ export function AddingForm({ selectedUser, repeatedDeal, onSearchUsers, onCreate
         errors: formErrors,
         // ---
         reset: resetForm,
+        setValue: updateForm,
         handleSubmit,
-        setValue,
     } = useForm({
         defaultValues: { user: '', amount: '' },
     });
@@ -32,21 +32,33 @@ export function AddingForm({ selectedUser, repeatedDeal, onSearchUsers, onCreate
         amount: formControl({ ...FORM_VALIDATION.AMOUNT }),
     };
 
+    // * search users
     useEffect(() => {
         onSearchUsers(searchQuery);
     }, [searchQuery, onSearchUsers]);
 
+    // * select user
     useEffect(() => {
         if (selectedUser) {
-            setValue('user', selectedUser);
+            updateForm('user', selectedUser);
         }
-    }, [selectedUser, setValue]);
+    }, [selectedUser, updateForm]);
 
+    // * handle deal copying
+    useEffect(() => {
+        if (copiedDeal) {
+            updateForm('user', copiedDeal.username);
+            updateForm('amount', copiedDeal.amount);
+        }
+    }, [copiedDeal, updateForm]);
+
+    // * handle deal repeating
     useEffect(() => {
         if (repeatedDeal) {
+            resetForm();
             onCreateDeal(repeatedDeal.username, repeatedDeal.amount);
         }
-    }, [repeatedDeal, onCreateDeal]);
+    }, [repeatedDeal, resetForm, onCreateDeal]);
 
     function onProcessAdd(data) {
         resetForm();

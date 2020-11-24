@@ -9,7 +9,7 @@ import cn from 'classnames';
 // icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export function DealsTable({ dealsList, onRepeatDeal }) {
+export function DealsTable({ dealsList, onCopyDeal, onRepeatDeal }) {
     return (
         <app-deals-table>
             <div className="mt-3 deals-list">
@@ -61,10 +61,25 @@ export function DealsTable({ dealsList, onRepeatDeal }) {
                                     <td>{deal.date}</td>
 
                                     <td>
-                                        <button type="button" className="repeat-btn" onClick={() => onRepeatDeal(deal)}>
-                                            <FontAwesomeIcon icon={['fas', 'redo']} />
-                                            <span className="repeat-btn__text">REPEAT</span>
-                                        </button>
+                                        <div className="d-flex justify-content-around">
+                                            <button
+                                                type="button"
+                                                className="action-btn"
+                                                onClick={() => onCopyDeal(deal)}
+                                            >
+                                                <FontAwesomeIcon icon={['fas', 'copy']} />
+                                                <span className="action-btn__text">COPY</span>
+                                            </button>
+
+                                            <button
+                                                type="button"
+                                                className="action-btn"
+                                                onClick={() => onRepeatDeal(deal)}
+                                            >
+                                                <FontAwesomeIcon icon={['fas', 'redo']} />
+                                                <span className="action-btn__text">REPEAT</span>
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             ))}
