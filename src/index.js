@@ -19,7 +19,7 @@ import * as serviceWorker from './utils/serviceWorker';
 // store
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { appReducer } from './app/@core/store/app.reducer';
+import { appReducer } from './app/@store/app.reducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 // ---

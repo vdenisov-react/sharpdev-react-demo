@@ -9,10 +9,10 @@ import {
 } from './actions';
 
 // services
-import { DealsService } from '../../api/services';
+import { DealsService } from '../../@core/api/services';
 
 // ...
-import { ERROR_UNEXPECTED } from '../../../@shared/constants';
+import { ERROR_UNEXPECTED } from '../../@shared/constants';
 
 export const thunkAddNew = (user, amount) => {
     return async dispatch => {

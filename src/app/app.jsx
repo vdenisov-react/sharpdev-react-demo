@@ -10,7 +10,7 @@ import { Header } from './@layout';
 import { NotFound } from './@layout';
 
 // store
-import { actionAuthLogout, thunkGetCurrentUser } from './@core/store/auth';
+import { actionAuthLogout, thunkGetCurrentUser } from './@store/auth';
 
 // services
 import { LocalStorageService } from './@core/services';

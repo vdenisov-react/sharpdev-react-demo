@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react';
 import { connect } from 'react-redux';
 
 // store
-import { thunkAddNew, thunkGetList } from '../@core/store/deals';
+import { thunkAddNew, thunkGetList } from '../@store/deals';
 
 // styles
 import './deals.scss';
