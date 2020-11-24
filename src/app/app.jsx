@@ -13,7 +13,7 @@ import { NotFound } from './@layout';
 import { actionAuthLogout, thunkGetCurrentUser } from './@store/auth';
 
 // services
-import { LocalStorageService } from './@core/services';
+import { LocalStorageService } from './@core/helpers';
 
 // pages
 import Auth from './auth/auth';

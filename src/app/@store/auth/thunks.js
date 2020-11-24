@@ -15,7 +15,7 @@ import { history } from '../../@core/navigation';
 
 // services
 import { AuthService, UsersService } from '../../@core/api/services';
-import { LocalStorageService } from '../../@core/services';
+import { LocalStorageService } from '../../@core/helpers';
 
 // ...
 import { ERROR_UNEXPECTED } from '../../@shared/constants';
