@@ -4,17 +4,16 @@ import { Router, Route, Switch, Redirect } from 'react-router-dom';
 
 // core
 import { history } from './@core/navigation';
+// store
+import { actionAuthLogout, thunkGetCurrentUser } from './@store/auth';
+// services
+import { LocalStorageService } from './@core/helpers';
 
 // layouts
 import { Header } from './@layout';
 import { NotFound } from './@layout';
-
-// store
-import { actionAuthLogout, thunkGetCurrentUser } from './@store/auth';
-
-// services
-import { LocalStorageService } from './@core/helpers';
-
+// icons
+import '../utils/fontAwesome';
 // pages
 import Auth from './auth/auth';
 import Deals from './deals/deals';

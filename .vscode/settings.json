@@ -8,7 +8,9 @@
         "DEVTOOLS",
         "Parens",
         "bootswatch",
-        "browserslist"
+        "browserslist",
+        "fontawesome",
+        "fortawesome"
     ],
     "files.watcherExclude": {
         "**/.git/objects/**": true,
