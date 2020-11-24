@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { connect } from 'react-redux';
 
 // store
@@ -24,11 +24,7 @@ function Deals({ dealsList, onAddNew, onGetList }) {
         onGetList();
     }, [onGetList]);
 
-    function onCreateDeal(user, amount) {
-        onAddNew(user, amount);
-    }
-
-    function onSearchUsers(query) {
+    const onSearchUsers = useCallback(query => {
         if (!query) return;
         setSearchingFlag(true);
 
@@ -39,6 +35,10 @@ function Deals({ dealsList, onAddNew, onGetList }) {
             .catch(err => {
                 console.log('ERR =>', err);
             });
+    }, []);
+
+    function onCreateDeal(user, amount) {
+        onAddNew(user, amount);
     }
 
     function onSelectUser(user) {
