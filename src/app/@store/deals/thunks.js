@@ -8,6 +8,8 @@ import {
     actionDealsGetListError,
 } from './actions';
 
+import { actionAuthUpdateUserBalance } from '../auth/actions';
+
 // services
 import { DealsService } from '../../@core/api/services';
 
@@ -20,6 +22,7 @@ export const thunkAddNew = (user, amount) => {
             const res = await DealsService.addNew(user, amount);
             const dealObj = get(res, 'data.trans_token') || null;
             dispatch(actionDealsAddNewSuccess(dealObj));
+            dispatch(actionAuthUpdateUserBalance(dealObj.balance));
             dispatch(thunkGetList());
         } catch (err) {
             const errMsg = parseError(err);
