@@ -14,4 +14,24 @@ app-deals-table {
         font-size: 20px;
         font-style: italic;
     }
+
+    .repeat-btn {
+        border: none;
+        background: none;
+        border-radius: 5px;
+        border: 1px solid #000000;
+
+        &__text {
+            margin-left: 10px;
+        }
+
+        &:hover {
+            background: rgba(#000000, 0.1);
+        }
+
+        &:focus {
+            outline: none;
+            box-shadow: none;
+        }
+    }
 }

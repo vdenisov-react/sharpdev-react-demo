@@ -18,7 +18,9 @@ import { UsersList } from './users-list/users-list';
 function Deals({ dealsList, onAddNew, onGetList }) {
     const [usersList, setUsersList] = useState([]);
     const [isSearching, setSearchingFlag] = useState(false);
+
     const [selectedUser, setSelectedUser] = useState(null);
+    const [repeatedDeal, setRepeatedDeal] = useState(null);
 
     useEffect(() => {
         onGetList();
@@ -37,22 +39,34 @@ function Deals({ dealsList, onAddNew, onGetList }) {
             });
     }, []);
 
-    function onCreateDeal(user, amount) {
-        onAddNew(user, amount);
-    }
-
     function onSelectUser(user) {
         setSearchingFlag(false);
         setSelectedUser(user);
     }
 
+    const onCreateDeal = useCallback(
+        (user, amount) => {
+            onAddNew(user, amount);
+        },
+        [onAddNew],
+    );
+
+    function onRepeatDeal(deal) {
+        setRepeatedDeal(deal);
+    }
+
     return (
         <app-deals>
-            <AddingForm selectedUser={selectedUser} onSearchUsers={onSearchUsers} onCreateDeal={onCreateDeal} />
+            <AddingForm
+                selectedUser={selectedUser}
+                repeatedDeal={repeatedDeal}
+                onSearchUsers={onSearchUsers}
+                onCreateDeal={onCreateDeal}
+            />
 
             {isSearching && <UsersList usersList={usersList} onSelectUser={onSelectUser} />}
 
-            <DealsTable dealsList={dealsList} />
+            <DealsTable dealsList={dealsList} onRepeatDeal={onRepeatDeal} />
         </app-deals>
     );
 }

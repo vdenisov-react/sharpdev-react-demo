@@ -13,7 +13,7 @@ const FORM_VALIDATION = {
     },
 };
 
-export function AddingForm({ selectedUser, onSearchUsers, onCreateDeal }) {
+export function AddingForm({ selectedUser, repeatedDeal, onSearchUsers, onCreateDeal }) {
     const [searchQuery, setSearchQuery] = useState('');
 
     const {
@@ -37,8 +37,16 @@ export function AddingForm({ selectedUser, onSearchUsers, onCreateDeal }) {
     }, [searchQuery, onSearchUsers]);
 
     useEffect(() => {
-        setValue('user', selectedUser);
+        if (selectedUser) {
+            setValue('user', selectedUser);
+        }
     }, [selectedUser, setValue]);
+
+    useEffect(() => {
+        if (repeatedDeal) {
+            onCreateDeal(repeatedDeal.username, repeatedDeal.amount);
+        }
+    }, [repeatedDeal, onCreateDeal]);
 
     function onProcessAdd(data) {
         resetForm();

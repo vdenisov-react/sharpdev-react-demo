@@ -6,7 +6,10 @@ import { INTERNAL_CURRENCY_SYMBOL } from '../../@shared/constants';
 import './deals-table.scss';
 import cn from 'classnames';
 
-export function DealsTable({ dealsList }) {
+// icons
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+export function DealsTable({ dealsList, onRepeatDeal }) {
     return (
         <app-deals-table>
             <div className="mt-3 deals-list">
@@ -20,6 +23,7 @@ export function DealsTable({ dealsList }) {
                             <th scope="col">Amount</th>
                             <th scope="col">Balance</th>
                             <th scope="col">Date</th>
+                            <th scope="col"></th>
                         </tr>
                     </thead>
 
@@ -35,17 +39,33 @@ export function DealsTable({ dealsList }) {
                                         { 'table-danger': deal.amount < 0 },
                                     )}
                                 >
+                                    {/* # */}
                                     <th scope="row">{index + 1}</th>
+
+                                    {/* Username */}
                                     <td>{deal.username}</td>
+
+                                    {/* Amount */}
                                     <td>
                                         {deal.amount}
                                         {INTERNAL_CURRENCY_SYMBOL}
                                     </td>
+
+                                    {/* Balance */}
                                     <td>
                                         {deal.balance}
                                         {INTERNAL_CURRENCY_SYMBOL}
                                     </td>
+
+                                    {/* Date */}
                                     <td>{deal.date}</td>
+
+                                    <td>
+                                        <button type="button" className="repeat-btn" onClick={() => onRepeatDeal(deal)}>
+                                            <FontAwesomeIcon icon={['fas', 'redo']} />
+                                            <span className="repeat-btn__text">REPEAT</span>
+                                        </button>
+                                    </td>
                                 </tr>
                             ))}
 
