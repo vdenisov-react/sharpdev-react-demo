@@ -9,6 +9,7 @@
         "Parens",
         "bootswatch",
         "browserslist",
+        "esnext",
         "fontawesome",
         "fortawesome"
     ],
