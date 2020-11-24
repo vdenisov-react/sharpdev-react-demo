@@ -31,10 +31,14 @@ export const actionAuthGetCurrentUserError = errMsg => ({
     type: AUTH.GET_CURRENT_USER_ERROR,
     payload: { errorGetCurrentUser: errMsg },
 });
+export const actionAuthUpdateUserBalance = newValue => ({
+    type: AUTH.UPDATE_USER_BALANCE,
+    payload: { newBalance: newValue },
+});
 // <= CURRENT_USER
 
 export const actionsUpdateAuthStatus = isAuth => ({
-    type: AUTH.UPDATE_STATUS,
+    type: AUTH.UPDATE_AUTH_STATUS,
     payload: { isAuth },
 });
 export const actionAuthLogout = () => ({

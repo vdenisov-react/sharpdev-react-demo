@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LocalStorageService } from '../../../services';
+import { LocalStorageService } from '../../../helpers';
 
 const API_URL = 'http://193.124.114.46:3001';
 

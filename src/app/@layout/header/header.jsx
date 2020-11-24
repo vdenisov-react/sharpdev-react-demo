@@ -1,5 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
 
+import { INTERNAL_CURRENCY_SYMBOL } from '../../@shared/constants';
+
 // navigation
 import { history } from '../../@core/navigation';
 
@@ -77,7 +79,10 @@ export function Header({ isAuth, currentUser, onLogout }) {
                                     {currentUser ? currentUser.name : 'Authorized'}
                                 </span>
 
-                                <span className="account__user-balance">{currentUser ? currentUser.balance : 0}</span>
+                                <span className="account__user-balance">
+                                    {currentUser ? currentUser.balance : 0}
+                                    {INTERNAL_CURRENCY_SYMBOL}
+                                </span>
 
                                 <div className="btn-group account__actions ml-4" role="group">
                                     <button type="button" className="btn btn-danger" onClick={onLogout}>

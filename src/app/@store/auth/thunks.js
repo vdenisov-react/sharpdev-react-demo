@@ -11,14 +11,14 @@ import {
 } from './actions';
 
 // routing
-import { history } from '../../navigation';
+import { history } from '../../@core/navigation';
 
 // services
-import { AuthService, UsersService } from '../../api/services';
-import { LocalStorageService } from '../../services';
+import { AuthService, UsersService } from '../../@core/api/services';
+import { LocalStorageService } from '../../@core/helpers';
 
 // ...
-import { ERROR_UNEXPECTED } from '../../../@shared/constants';
+import { ERROR_UNEXPECTED } from '../../@shared/constants';
 
 export const thunkLogin = (email, password) => {
     return async dispatch => {

@@ -60,6 +60,15 @@ export function authReducer(state = initialState, action) {
                 currentUser: null,
                 errorGetCurrentUser: action.payload.errorGetCurrentUser,
             };
+
+        case AUTH.UPDATE_USER_BALANCE:
+            return {
+                ...state,
+                currentUser: {
+                    ...state.currentUser,
+                    balance: action.payload.newBalance,
+                },
+            };
         // <= CURRENT_USER
 
         case AUTH.LOGOUT:

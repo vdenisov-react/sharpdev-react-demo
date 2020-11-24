@@ -13,7 +13,7 @@ const FORM_VALIDATION = {
     },
 };
 
-export function AddingForm({ selectedUser, onSearchUsers, onCreateDeal }) {
+export function AddingForm({ selectedUser, copiedDeal, repeatedDeal, onSearchUsers, onCreateDeal }) {
     const [searchQuery, setSearchQuery] = useState('');
 
     const {
@@ -21,8 +21,8 @@ export function AddingForm({ selectedUser, onSearchUsers, onCreateDeal }) {
         errors: formErrors,
         // ---
         reset: resetForm,
+        setValue: updateForm,
         handleSubmit,
-        setValue,
     } = useForm({
         defaultValues: { user: '', amount: '' },
     });
@@ -32,13 +32,33 @@ export function AddingForm({ selectedUser, onSearchUsers, onCreateDeal }) {
         amount: formControl({ ...FORM_VALIDATION.AMOUNT }),
     };
 
+    // * search users
     useEffect(() => {
         onSearchUsers(searchQuery);
     }, [searchQuery, onSearchUsers]);
 
+    // * select user
     useEffect(() => {
-        setValue('user', selectedUser);
-    }, [selectedUser, setValue]);
+        if (selectedUser) {
+            updateForm('user', selectedUser);
+        }
+    }, [selectedUser, updateForm]);
+
+    // * handle deal copying
+    useEffect(() => {
+        if (copiedDeal) {
+            updateForm('user', copiedDeal.username);
+            updateForm('amount', copiedDeal.amount);
+        }
+    }, [copiedDeal, updateForm]);
+
+    // * handle deal repeating
+    useEffect(() => {
+        if (repeatedDeal) {
+            resetForm();
+            onCreateDeal(repeatedDeal.username, repeatedDeal.amount);
+        }
+    }, [repeatedDeal, resetForm, onCreateDeal]);
 
     function onProcessAdd(data) {
         resetForm();

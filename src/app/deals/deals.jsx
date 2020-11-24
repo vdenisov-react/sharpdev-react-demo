@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { connect } from 'react-redux';
 
 // store
-import { thunkAddNew, thunkGetList } from '../@core/store/deals';
+import { thunkAddNew, thunkGetList } from '../@store/deals';
 
 // styles
 import './deals.scss';
@@ -20,15 +20,14 @@ function Deals({ dealsList, onAddNew, onGetList }) {
     const [isSearching, setSearchingFlag] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
 
+    const [copiedDeal, setCopiedDeal] = useState(null);
+    const [repeatedDeal, setRepeatedDeal] = useState(null);
+
     useEffect(() => {
         onGetList();
     }, [onGetList]);
 
-    function onCreateDeal(user, amount) {
-        onAddNew(user, amount);
-    }
-
-    function onSearchUsers(query) {
+    const onSearchUsers = useCallback(query => {
         if (!query) return;
         setSearchingFlag(true);
 
@@ -39,20 +38,41 @@ function Deals({ dealsList, onAddNew, onGetList }) {
             .catch(err => {
                 console.log('ERR =>', err);
             });
-    }
+    }, []);
 
     function onSelectUser(user) {
         setSearchingFlag(false);
         setSelectedUser(user);
     }
 
+    const onCreateDeal = useCallback(
+        (user, amount) => {
+            onAddNew(user, amount);
+        },
+        [onAddNew],
+    );
+
+    function onCopyDeal(deal) {
+        setCopiedDeal(deal);
+    }
+
+    function onRepeatDeal(deal) {
+        setRepeatedDeal(deal);
+    }
+
     return (
         <app-deals>
-            <AddingForm selectedUser={selectedUser} onSearchUsers={onSearchUsers} onCreateDeal={onCreateDeal} />
+            <AddingForm
+                selectedUser={selectedUser}
+                copiedDeal={copiedDeal}
+                repeatedDeal={repeatedDeal}
+                onSearchUsers={onSearchUsers}
+                onCreateDeal={onCreateDeal}
+            />
 
             {isSearching && <UsersList usersList={usersList} onSelectUser={onSelectUser} />}
 
-            <DealsTable dealsList={dealsList} />
+            <DealsTable dealsList={dealsList} onCopyDeal={onCopyDeal} onRepeatDeal={onRepeatDeal} />
         </app-deals>
     );
 }

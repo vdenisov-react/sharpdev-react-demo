@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 // store
-import { thunkLogin, thunkRegister } from '../@core/store/auth';
+import { thunkLogin, thunkRegister } from '../@store/auth';
 
 // pages
 import { Login } from './login/login';
