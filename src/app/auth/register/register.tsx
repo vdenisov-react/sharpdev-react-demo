@@ -29,7 +29,19 @@ const FORM_VALIDATION = {
     },
 };
 
-export function Register({ onRegister, errorRegister, goToLogin }) {
+type RegisterCredentials = {
+    email: string;
+    username: string;
+    password: string;
+};
+
+type Props = {
+    onRegister: (email: string, username: string, password: string) => void;
+    errorRegister: string;
+    goToLogin: () => void;
+};
+
+export const Register: React.FC<Props> = ({ onRegister, errorRegister, goToLogin }) => {
     const { register: formControl, handleSubmit, errors: formErrors, watch } = useForm({
         defaultValues: { email: '', username: '', password: '', confirm: '' },
     });
@@ -44,13 +56,13 @@ export function Register({ onRegister, errorRegister, goToLogin }) {
         }),
     };
 
-    function onProcessRegister(data) {
+    function onProcessRegister(data: RegisterCredentials) {
         const { email, username, password } = data;
         onRegister(email, username, password);
     }
 
     return (
-        <app-register>
+        <section className="app-register">
             <div className="card border-primary my-5 mx-auto register-form">
                 <div className="card-header">Register form</div>
 
@@ -160,6 +172,6 @@ export function Register({ onRegister, errorRegister, goToLogin }) {
                     </form>
                 </div>
             </div>
-        </app-register>
+        </section>
     );
-}
+};
