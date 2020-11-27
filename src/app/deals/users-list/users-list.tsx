@@ -3,9 +3,14 @@ import React from 'react';
 // styles
 import './users-list.scss';
 
-export function UsersList({ usersList, onSelectUser }) {
+type Props = {
+    usersList: any[];
+    onSelectUser: (user: string) => void;
+};
+
+export const UsersList: React.FC<Props> = ({ usersList, onSelectUser }) => {
     return (
-        <app-users-list>
+        <section className="app-users-list">
             <div className="users-list mt-3">
                 <div className="data-list">
                     {/* USERS LIST */}
@@ -23,6 +28,6 @@ export function UsersList({ usersList, onSelectUser }) {
                     {usersList.length === 0 && <p className="no-data-msg">no matching users found</p>}
                 </div>
             </div>
-        </app-users-list>
+        </section>
     );
-}
+};

@@ -9,9 +9,15 @@ import cn from 'classnames';
 // icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export function DealsTable({ dealsList, onCopyDeal, onRepeatDeal }) {
+type Props = {
+    dealsList: any[];
+    onCopyDeal: (deal: any) => void;
+    onRepeatDeal: (deal: any) => void;
+};
+
+export const DealsTable: React.FC<Props> = ({ dealsList, onCopyDeal, onRepeatDeal }) => {
     return (
-        <app-deals-table>
+        <section className="app-deals-table">
             <div className="mt-3 deals-list">
                 {/* DEALS LIST */}
                 <table className="table">
@@ -87,6 +93,7 @@ export function DealsTable({ dealsList, onCopyDeal, onRepeatDeal }) {
                         {/* no data */}
                         {dealsList.length === 0 && (
                             <tr>
+                                {/* @ts-expect-error: Type 'string' is not assignable to type 'number | undefined'. */}
                                 <td colSpan="100%">
                                     <div className="no-data-msg">no data</div>
                                 </td>
@@ -95,6 +102,6 @@ export function DealsTable({ dealsList, onCopyDeal, onRepeatDeal }) {
                     </tbody>
                 </table>
             </div>
-        </app-deals-table>
+        </section>
     );
-}
+};

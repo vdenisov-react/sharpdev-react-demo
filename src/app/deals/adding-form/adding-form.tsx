@@ -13,7 +13,21 @@ const FORM_VALIDATION = {
     },
 };
 
-export function AddingForm({ selectedUser, copiedDeal, repeatedDeal, onSearchUsers, onCreateDeal }) {
+type Props = {
+    selectedUser: string;
+    copiedDeal: any;
+    repeatedDeal: any;
+    onSearchUsers: (searchQuery: string) => void;
+    onCreateDeal: (username: string, amount: number) => void;
+};
+
+export const AddingForm: React.FC<Props> = ({
+    selectedUser,
+    copiedDeal,
+    repeatedDeal,
+    onSearchUsers,
+    onCreateDeal,
+}: Props) => {
     const [searchQuery, setSearchQuery] = useState('');
 
     const {
@@ -60,14 +74,14 @@ export function AddingForm({ selectedUser, copiedDeal, repeatedDeal, onSearchUse
         }
     }, [repeatedDeal, resetForm, onCreateDeal]);
 
-    function onProcessAdd(data) {
+    function onProcessAdd(data: { user: string; amount: number }) {
         resetForm();
         const { user, amount } = data;
         onCreateDeal(user, amount);
     }
 
     return (
-        <app-adding-form>
+        <section className="app-adding-form">
             <div className="card border-primary adding-card">
                 <div className="card-body">
                     <form className="adding-form" onSubmit={handleSubmit(onProcessAdd)}>
@@ -117,6 +131,6 @@ export function AddingForm({ selectedUser, copiedDeal, repeatedDeal, onSearchUse
                     </form>
                 </div>
             </div>
-        </app-adding-form>
+        </section>
     );
-}
+};

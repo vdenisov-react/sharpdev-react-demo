@@ -15,13 +15,19 @@ import { AddingForm } from './adding-form/adding-form';
 import { DealsTable } from './deals-table/deals-table';
 import { UsersList } from './users-list/users-list';
 
-function Deals({ dealsList, onAddNew, onGetList }) {
-    const [usersList, setUsersList] = useState([]);
-    const [isSearching, setSearchingFlag] = useState(false);
-    const [selectedUser, setSelectedUser] = useState(null);
+type Props = {
+    dealsList: any[];
+    onAddNew: (user: string, amount: number) => void;
+    onGetList: () => any[];
+};
 
-    const [copiedDeal, setCopiedDeal] = useState(null);
-    const [repeatedDeal, setRepeatedDeal] = useState(null);
+const Deals: React.FC<Props> = ({ dealsList, onAddNew, onGetList }) => {
+    const [usersList, setUsersList] = useState<any[]>([]);
+    const [isSearching, setSearchingFlag] = useState<boolean>(false);
+    const [selectedUser, setSelectedUser] = useState<string>('');
+
+    const [copiedDeal, setCopiedDeal] = useState<any>(null);
+    const [repeatedDeal, setRepeatedDeal] = useState<any>(null);
 
     useEffect(() => {
         onGetList();
@@ -40,7 +46,7 @@ function Deals({ dealsList, onAddNew, onGetList }) {
             });
     }, []);
 
-    function onSelectUser(user) {
+    function onSelectUser(user: string) {
         setSearchingFlag(false);
         setSelectedUser(user);
     }
@@ -52,16 +58,16 @@ function Deals({ dealsList, onAddNew, onGetList }) {
         [onAddNew],
     );
 
-    function onCopyDeal(deal) {
+    function onCopyDeal(deal: any) {
         setCopiedDeal(deal);
     }
 
-    function onRepeatDeal(deal) {
+    function onRepeatDeal(deal: any) {
         setRepeatedDeal(deal);
     }
 
     return (
-        <app-deals>
+        <section className="app-deals">
             <AddingForm
                 selectedUser={selectedUser}
                 copiedDeal={copiedDeal}
@@ -73,22 +79,22 @@ function Deals({ dealsList, onAddNew, onGetList }) {
             {isSearching && <UsersList usersList={usersList} onSelectUser={onSelectUser} />}
 
             <DealsTable dealsList={dealsList} onCopyDeal={onCopyDeal} onRepeatDeal={onRepeatDeal} />
-        </app-deals>
+        </section>
     );
-}
+};
 
 // ##################################################
 
-const mapStateToProps = ({ deals: dealsState }) => ({
+const mapStateToProps = ({ deals: dealsState }: any) => ({
     dealsList: dealsState.dealsList,
     errorAddNew: dealsState.errorAddNew,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch: any) => ({
     onGetList: () => {
         return dispatch(thunkGetList());
     },
-    onAddNew: (user, amount) => {
+    onAddNew: (user: string, amount: number) => {
         return dispatch(thunkAddNew(user, amount));
     },
 });
