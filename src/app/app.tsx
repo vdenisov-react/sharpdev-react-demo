@@ -12,20 +12,29 @@ import { LocalStorageService } from './@core/helpers';
 // layouts
 import { Header } from './@layout';
 import { NotFound } from './@layout';
-// icons
-import '../utils/fontAwesome';
 // pages
 import Auth from './auth/auth';
 import Deals from './deals/deals';
+// icons
+import '../utils/fontAwesome';
+// styles
+import './app.scss';
 
-function App({ isAuth, currentUser, onGetCurrentUser, onLogout }) {
+type Props = {
+    isAuth: boolean;
+    currentUser: any;
+    onGetCurrentUser: () => any;
+    onLogout: () => void;
+};
+
+const App: React.FC<Props> = ({ isAuth, currentUser, onGetCurrentUser, onLogout }) => {
     useEffect(() => {
         const accessToken = LocalStorageService.get('token');
         if (accessToken) onGetCurrentUser();
     }, [onGetCurrentUser]);
 
     return (
-        <app-root>
+        <section className="app-root">
             <Header isAuth={isAuth} currentUser={currentUser} onLogout={onLogout} />
 
             <div className="content">
@@ -35,7 +44,8 @@ function App({ isAuth, currentUser, onGetCurrentUser, onLogout }) {
                         {!isAuth && (
                             <Fragment>
                                 <Route path="/auth" component={Auth} />
-                                <Redirect exact="/" to="/auth" />
+                                <Route path="/" exact={true} render={() => <Redirect to="/auth" />} />
+                                {/* <Redirect path="/" exact={true} to="/auth" /> */}
                             </Fragment>
                         )}
 
@@ -43,28 +53,31 @@ function App({ isAuth, currentUser, onGetCurrentUser, onLogout }) {
                         {isAuth && (
                             <Fragment>
                                 <Route path="/deals" component={Deals} />
-                                <Redirect exact="/" to="/deals" />
+                                <Route path="/" exact={true} render={() => <Redirect to="/deals" />} />
+                                {/* <Redirect path="/" exact={true} to="/deals" /> */}
                             </Fragment>
                         )}
-
-                        {/* DEFAULT ROUTES */}
-                        <Route path="/not-found" component={NotFound} />
-                        <Redirect exact="*" to="/not-found" />
                     </Switch>
+
+                    <Route default={true} component={NotFound} />
+                    {/*
+                        <Route path="/not-found" component={NotFound} />
+                        <Route default={true} render={() => <Redirect to="/not-found" />} />
+                    */}
                 </Router>
             </div>
-        </app-root>
+        </section>
     );
-}
+};
 
 // ##################################################
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: any) => ({
     isAuth: state.auth.isAuth,
     currentUser: state.auth.currentUser,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch: any) => ({
     onGetCurrentUser: () => {
         return dispatch(thunkGetCurrentUser());
     },

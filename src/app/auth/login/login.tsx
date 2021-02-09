@@ -20,7 +20,18 @@ const FORM_VALIDATION = {
     },
 };
 
-export function Login({ onLogin, errorLogin, goToRegister }) {
+type LoginCredentials = {
+    email: string;
+    password: string;
+};
+
+type Props = {
+    onLogin: (email: string, password: string) => void;
+    errorLogin: string;
+    goToRegister: () => void;
+};
+
+export const Login: React.FC<Props> = ({ onLogin, errorLogin, goToRegister }) => {
     const { register: formControl, handleSubmit, errors: formErrors } = useForm({
         defaultValues: { email: '', password: '' },
     });
@@ -30,13 +41,13 @@ export function Login({ onLogin, errorLogin, goToRegister }) {
         password: formControl({ ...FORM_VALIDATION.PASSWORD }),
     };
 
-    function onProcessLogin(data) {
+    function onProcessLogin(data: LoginCredentials): void {
         const { email, password } = data;
         onLogin(email, password);
     }
 
     return (
-        <app-login>
+        <section className="app-login">
             <div className="card border-primary my-5 mx-auto login-form">
                 <div className="card-header">Login form</div>
 
@@ -106,6 +117,6 @@ export function Login({ onLogin, errorLogin, goToRegister }) {
                     </form>
                 </div>
             </div>
-        </app-login>
+        </section>
     );
-}
+};
